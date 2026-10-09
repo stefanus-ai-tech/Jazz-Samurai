@@ -1,5 +1,6 @@
 import React from "react";
-import { Composition } from "remotion";
+import { Composition, Still } from "remotion";
+import { Cover } from "./Cover";
 import { FPS, H, SONG_DURATION, W } from "./lib/constants";
 import { MV, MVProps } from "./MV";
 
@@ -29,5 +30,6 @@ export const RemotionRoot: React.FC = () => (
       defaultProps={REEL}
       calculateMetadata={({ props }) => ({ durationInFrames: Math.ceil((props.to - props.from) * FPS) })}
     />
+    <Still id="Cover" component={Cover} width={W} height={H} />
   </>
 );
