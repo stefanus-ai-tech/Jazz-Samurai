@@ -1,189 +1,21 @@
 import { C } from "./lib/constants";
 import { Line } from "./lib/lyrics";
 import { LStyle } from "./Lyrics";
-import { Tr } from "./Transitions";
-import { SceneFC } from "./scenes/kit";
-import * as I from "./scenes/Intro";
-import * as V1 from "./scenes/Verse1";
-import * as CH from "./scenes/Chorus";
-import * as D from "./scenes/Duel";
-import * as V2 from "./scenes/Verse2";
-import * as B from "./scenes/Bridge";
-import * as S from "./scenes/Scat";
-import * as F from "./scenes/Final";
+import type { Cue } from "./cue";
+import * as P1 from "./parts/part1";
+import * as P2 from "./parts/part2";
+import * as P3 from "./parts/part3";
+import * as P4 from "./parts/part4";
 
-export type Cue = { at: number; S: SceneFC; tr?: Tr; trd?: number; montage?: boolean };
+export type { Cue };
 
-/** The whole video, scene by scene (seconds in the song). */
-export const CUES: Cue[] = [
-  { at: 0, S: I.VinylIntro },
-  { at: 8.4, S: I.BassIntro, tr: "iris", trd: 0.5 },
-  { at: 12.8, S: I.DumComic, tr: "slash", trd: 0.35 },
-  { at: 16.1, S: I.TaikoBeat, tr: "shutter", trd: 0.4 },
-  { at: 22.6, S: I.VoiceSeated, tr: "ink", trd: 0.8 },
-  { at: 31.92, S: I.WahBlast },
-  { at: 33.4, S: I.Montage, tr: "flash", trd: 0.2 },
-  { at: 38.6, S: I.WalkCity, tr: "push", trd: 0.5 },
-  { at: 46.0, S: I.HatEyesScene, tr: "blinds", trd: 0.5 },
-  { at: 52.6, S: V1.Midnight, tr: "iris", trd: 0.4 },
-  { at: 55.33, S: V1.JazzSoul, tr: "glitch", trd: 0.3 },
-  { at: 58.2, S: V1.BladeDraw, tr: "slash", trd: 0.35 },
-  { at: 60.85, S: V1.FeverSmoke, tr: "ink", trd: 0.5 },
-  { at: 63.2, S: V1.TideWave, tr: "pushUp", trd: 0.4 },
-  { at: 65.9, S: V1.SlowCity, tr: "shoji", trd: 0.5 },
-  { at: 68.5, S: V1.ClockScene, tr: "spin", trd: 0.45 },
-  { at: 71.25, S: V1.RainingWatches, tr: "drop", trd: 0.5 },
-  { at: 75.6, S: V1.GetDown, tr: "zoom", trd: 0.35 },
-  { at: 83.55, S: CH.WorldSpin, tr: "scratch", trd: 0.35 },
-  { at: 86.35, S: CH.FreezeFrame, tr: "flash", trd: 0.2 },
-  { at: 89.0, S: CH.DanceSteps, tr: "paper", trd: 0.45 },
-  { at: 91.6, S: CH.VinylCrack, tr: "iris", trd: 0.4 },
-  { at: 95.3, S: CH.ToriiDive, tr: "zoom", trd: 0.3 },
-  { at: 97.7, S: CH.DeepDepth, tr: "ink", trd: 0.45 },
-  { at: 100.35, S: CH.Strata, tr: "blinds", trd: 0.35 },
-  { at: 103.05, S: CH.BlackHoleScene, tr: "iris", trd: 0.4 },
-  { at: 107.0, S: CH.Breathe, tr: "flash", trd: 0.3 },
-  { at: 113.95, S: CH.Shuffle, tr: "slash", trd: 0.3 },
-  { at: 116.75, S: CH.BoomCha },
-  { at: 124.4, S: D.DuelWide, tr: "burn", trd: 0.8 },
-  { at: 129.6, S: D.DuelClose },
-  { at: 134.8, S: D.BambooEQ, tr: "shoji", trd: 0.5 },
-  { at: 140.0, S: D.DuelCharge, tr: "push", trd: 0.3 },
-  { at: 144.92, S: D.Aftermath },
-  { at: 146.8, S: V2.Crooked, tr: "slash", trd: 0.35 },
-  { at: 149.15, S: V2.FujiMove, tr: "glitch", trd: 0.25 },
-  { at: 150.85, S: V2.NoForce, tr: "paper", trd: 0.3 },
-  { at: 152.5, S: V2.DreamPocket, tr: "iris", trd: 0.4 },
-  { at: 155.3, S: V2.GoldDust, tr: "flash", trd: 0.25 },
-  { at: 157.25, S: V2.Lanterns, tr: "pushUp", trd: 0.4 },
-  { at: 159.22, S: V2.CrownCut, tr: "spin", trd: 0.35 },
-  { at: 161.32, S: V2.RoadHome, tr: "shutter", trd: 0.35 },
-  { at: 164.25, S: V2.Chants, tr: "scratch", trd: 0.3 },
-  { at: 170.6, S: B.Ripples, tr: "burn", trd: 0.9 },
-  { at: 177.0, S: B.Horizon, tr: "blinds", trd: 0.5 },
-  { at: 182.3, S: B.HeavenUnder, tr: "drop", trd: 0.6 },
-  { at: 187.5, S: B.HearThat, tr: "iris", trd: 0.5 },
-  { at: 195.2, S: B.EnsoSpace, tr: "flash", trd: 0.3 },
-  { at: 202.0, S: B.HaBlast },
-  { at: 205.45, S: S.ComicPanels, tr: "shutter", trd: 0.3 },
-  { at: 213.4, S: S.TurntableScene, tr: "spin", trd: 0.4 },
-  { at: 218.6, S: S.Rewind, tr: "glitch", trd: 0.3, montage: true },
-  { at: 223.8, S: S.ShamisenScene, tr: "scratch", trd: 0.35 },
-  { at: 229.0, S: S.NeonAlley, tr: "shoji", trd: 0.5 },
-  { at: 233.2, S: S.WooferFeed, tr: "zoom", trd: 0.3 },
-  { at: 244.5, S: S.RhodesKeys, tr: "ink", trd: 0.6 },
-  { at: 250.4, S: S.KoiPond, tr: "iris", trd: 0.5 },
-  { at: 256.3, S: S.BoomboxScene, tr: "glitch", trd: 0.3 },
-  { at: 264.3, S: F.Rooftops, tr: "push", trd: 0.5 },
-  { at: 271.6, S: F.MoonLeap, tr: "flash", trd: 0.3 },
-  { at: 278.2, S: F.HypnoChorus },
-  { at: 286.5, S: CH.BlackHoleScene, tr: "iris", trd: 0.4 },
-  { at: 289.6, S: F.Hyperspace, tr: "zoom", trd: 0.4 },
-  { at: 297.0, S: F.JazzClub, tr: "flash", trd: 0.25 },
-  { at: 311.55, S: F.BassOutro, tr: "slash", trd: 0.35 },
-  { at: 318.2, S: F.Sheath, tr: "ink", trd: 0.5 },
-  { at: 324.0, S: F.Sunrise, tr: "burn", trd: 0.9 },
-  { at: 333.0, S: F.Recap, tr: "flash", trd: 0.2, montage: true },
-  { at: 346.8, S: F.Bwoow, montage: true },
-  { at: 350.6, S: F.VinylStop, tr: "ink", trd: 0.5 },
-];
-
-const P = C.paper, R = C.red, K = C.ink, B2 = C.cyan;
+/** The whole video, scene by scene (seconds in the song), assembled from the four parts. */
+export const CUES: Cue[] = [...P1.cues, ...P2.cues, ...P3.cues, ...P4.cues];
 
 /** Typography for every lyric line (id → style). */
-export const LYRIC_STYLES: Record<number, LStyle> = {
-  0: { s: "comic", font: "bangers", y: 900, size: 150, color: P, accent: R },
-  1: { s: "comic", font: "bangers", y: 900, size: 160, color: P, accent: B2, hl: [2] },
-  2: { s: "stamp", font: "blackops", y: 960, size: 110, color: P, accent: R, bgColor: K },
-  3: { s: "stamp", font: "blackops", y: 960, size: 120, color: P, accent: B2, bgColor: K, seed: 9 },
-  4: { s: "whisper", font: "serifI", y: 520, size: 140, color: P },
-  5: { s: "serif", font: "serifI", y: 440, size: 140, color: P, accent: B2, hl: [1] },
-  6: { s: "serif", font: "serifI", y: 440, size: 120, color: P, accent: R, hl: [3] },
-  7: { s: "serif", font: "serifI", y: 440, size: 116, color: P, accent: R, hl: [4] },
-  8: { s: "slam", font: "shrikhand", y: 880, size: 300, color: P, rot: -6 },
-  9: { s: "stack", font: "anton", y: 820, w: 860, h: 1000, color: P, accent: B2, hl: [4] },
-  10: { s: "neon", font: "righteous", y: 820, w: 800, h: 460, accent: B2 },
-  11: { s: "split", font: "anton", y: 1360, w: 920, h: 300, color: P, accent: R, hl: [7, 8] },
-  12: { s: "wave", font: "caveat", y: 1080, w: 900, h: 500, color: P, size: 150 },
-  13: { s: "crooked", font: "bungee", y: 640, w: 900, h: 500, color: P, accent: R, hl: [0, 2] },
-  14: { s: "stretch", font: "bebas", y: 620, w: 820, h: 600, color: P },
-  15: { s: "type", font: "typewriter", y: 380, w: 940, h: 300, color: P, accent: R, hl: [2, 7] },
-  16: { s: "glitch", font: "anton", y: 900, w: 920, h: 620, color: P, accent: B2, hl: [4, 5, 6] },
-  17: { s: "drop", font: "bungee", y: 560, w: 900, h: 400, color: B2, size: 120 },
-  18: { s: "echo", font: "shrikhand", y: 560, w: 900, h: 420, color: P, accent: B2 },
-  19: { s: "drop", font: "londrina", y: 560, w: 900, h: 400, color: P, accent: R, hl: [1, 3], size: 150 },
-  20: { s: "slam", font: "anton", y: 820, w: 900, h: 600, color: P, accent: R, hl: [7] },
-  21: { s: "hand", font: "marker", y: 360, w: 920, h: 340, color: P, accent: R, hl: [4] },
-  22: { s: "stamp", font: "blackops", y: 470, w: 920, h: 460, color: K, accent: R, outline: null, size: 92 },
-  23: { s: "wave", font: "anton", upper: true, y: 330, w: 940, h: 380, color: P, accent: R, hl: [2, 7] },
-  24: { s: "drop", font: "anton", y: 900, w: 900, h: 700, color: P, accent: B2, hl: [0, 1, 2] },
-  25: { s: "zoom", font: "rubikmono", y: 700, w: 900, h: 600, color: P, accent: B2, hl: [2] },
-  26: { s: "sink", font: "anton", y: 480, w: 900, h: 400, color: P, accent: R, hl: [2] },
-  27: { s: "spiral", font: "bungee", x: 540, y: 900, size: 92, color: P },
-  28: { s: "whisper", font: "serifI", y: 760, size: 120, color: P },
-  29: { s: "whisper", font: "serifI", y: 1160, size: 120, color: B2 },
-  30: { s: "stamp", font: "blackops", y: 520, size: 120, color: P, accent: K, bgColor: R },
-  31: { s: "stamp", font: "blackops", y: 780, w: 940, size: 104, color: P, accent: K, bgColor: R, seed: 4 },
-  32: { s: "comic", font: "bangers", y: 400, size: 200, color: P, rot: -6 },
-  33: { s: "comic", font: "bangers", y: 420, size: 170, color: B2, rot: 5 },
-  34: { s: "comic", font: "bangers", y: 400, size: 200, color: P, rot: -3 },
-  35: { s: "comic", font: "bangers", y: 420, size: 170, color: R, rot: 6 },
-  36: { s: "comic", font: "bangers", y: 400, size: 210, color: P, rot: -8 },
-  37: { s: "crooked", font: "graffiti", y: 720, w: 900, h: 640, color: P, accent: B2, hl: [4, 9] },
-  38: { s: "pop", font: "abril", y: 500, w: 900, h: 460, color: P, accent: R, hl: [3, 7] },
-  39: { s: "serif", font: "serif", y: 960, size: 104, color: K, accent: R, outline: null, hl: [2, 5] },
-  40: { s: "float", font: "caveat", y: 640, w: 900, h: 600, color: P, accent: B2, hl: [11], upper: false },
-  41: { s: "outline", font: "abril", y: 800, w: 900, h: 560, color: P, accent: C.gold, hl: [4] },
-  42: { s: "float", font: "bungee", y: 900, w: 900, h: 560, color: P, accent: B2, hl: [1] },
-  43: { s: "split", font: "anton", y: 300, w: 940, h: 320, color: P, accent: R, hl: [4, 9] },
-  44: { s: "karaoke", font: "bebas", y: 560, w: 900, h: 520, color: P, accent: R, hl: [6, 8], lead: 0.4 },
-  45: { s: "chant", font: "bungee", y: 960, size: 110, color: P, accent: R, bgColor: K },
-  46: { s: "chant", font: "bungee", y: 960, size: 100, color: P, accent: B2, bgColor: K },
-  47: { s: "chant", font: "bungee", y: 960, size: 110, color: P, accent: R, bgColor: K },
-  48: { s: "zoom", font: "anton", y: 960, w: 660, h: 260, color: P, accent: R, hl: [4] },
-  49: { s: "whisper", font: "serif", y: 960, w: 1000, h: 220, size: 70, color: P, upper: false, outline: K },
-  50: { s: "whisper", font: "serifI", y: 330, w: 920, h: 300, size: 96, color: P },
-  51: { s: "whisper", font: "serifI", y: 960, size: 96, color: P },
-  52: { s: "zoom", font: "monoton", y: 600, size: 120, color: R, outline: null },
-  53: { s: "zoom", font: "monoton", y: 1320, size: 120, color: B2, outline: null },
-  54: { s: "serif", font: "serifI", y: 960, w: 560, h: 360, size: 74, color: K, accent: R, outline: null, hl: [3] },
-  55: { s: "slam", font: "climate", y: 880, size: 330, color: P },
-  56: { s: "bubble", font: "bangers", x: 290, y: 420, w: 440, size: 64, color: K },
-  57: { s: "bubble", font: "bangers", x: 790, y: 420, w: 440, size: 60, color: K, rot: 3 },
-  58: { s: "bubble", font: "bangers", x: 540, y: 900, w: 640, size: 74, color: K },
-  59: { s: "bubble", font: "bangers", x: 540, y: 1330, w: 900, size: 80, color: K, bgColor: C.cyan },
-  60: { s: "bubble", font: "bangers", x: 790, y: 1330, w: 440, size: 60, color: K },
-  61: { s: "bubble", font: "bangers", x: 290, y: 420, w: 440, size: 58, color: K, rot: -4 },
-  62: { s: "bubble", font: "bangers", x: 790, y: 420, w: 440, size: 58, color: K, rot: 4 },
-  63: { s: "slam", font: "bungeeshade", y: 420, w: 940, size: 96, color: P },
-  64: { s: "slam", font: "shrikhand", y: 1380, w: 940, size: 96, color: B2 },
-  65: { s: "slam", font: "faster", y: 420, w: 940, size: 100, color: R },
-  66: { s: "bubble", font: "bangers", y: 1380, w: 900, size: 84, color: K },
-  67: { s: "pop", font: "zendots", y: 420, w: 940, size: 78, color: P },
-  68: { s: "pop", font: "wetpaint", y: 1380, w: 940, size: 92, color: R },
-  69: { s: "pop", font: "rocksalt", y: 420, w: 940, size: 72, color: B2, upper: false },
-  70: { s: "bubble", font: "bangers", y: 1380, w: 900, size: 84, color: K, bgColor: C.cyan },
-  71: { s: "comic", font: "bangers", y: 470, size: 150, color: P, accent: R, rot: -5 },
-  72: { s: "comic", font: "bangers", y: 470, size: 150, color: B2, rot: 4 },
-  73: { s: "comic", font: "bangers", y: 470, size: 130, color: R, rot: -3 },
-  74: { s: "tunnel", font: "anton", y: 960, w: 900, size: 140, color: P, accent: B2 },
-  75: { s: "ticker", font: "bebas", y: 960, size: 150, color: P, bgColor: C.blue2, rot: -9 },
-  76: { s: "sink", font: "climate", y: 640, w: 940, h: 500, color: P, accent: R, hl: [2] },
-  77: { s: "spiral", font: "bungee", x: 540, y: 900, size: 96, color: P },
-  78: { s: "echo", font: "anton", y: 700, size: 170, color: P, accent: B2 },
-  79: { s: "neon", font: "righteous", y: 960, size: 140, accent: R },
-  80: { s: "echo", font: "anton", y: 1220, size: 170, color: P, accent: R },
-  81: { s: "scramble", font: "rubikmono", y: 420, size: 92, color: P, accent: R },
-  82: { s: "serif", font: "serifI", y: 380, size: 104, color: P, accent: R, hl: [3] },
-  83: { s: "serif", font: "serifI", y: 380, size: 104, color: P, accent: R, hl: [3] },
-  84: { s: "whisper", font: "serifI", y: 380, size: 104, color: P },
-  85: { s: "pop", font: "shrikhand", y: 380, w: 940, size: 100, color: P, accent: R, hl: [4] },
-  86: { s: "zoom", font: "monoton", y: 420, size: 120, color: P, outline: null },
-  87: { s: "zoom", font: "monoton", y: 1360, size: 110, color: C.red, outline: null },
-  88: { s: "serif", font: "serifI", y: 520, w: 900, size: 98, color: P, accent: R, hl: [4] },
-  89: { s: "serif", font: "serifI", y: 1300, w: 900, size: 98, color: P, accent: B2, hl: [3] },
-  90: { s: "melt", font: "faster", y: 760, size: 150, color: P, tail: 0.6 },
-};
+export const LYRIC_STYLES: Record<number, LStyle> = { ...P1.styles, ...P2.styles, ...P3.styles, ...P4.styles };
+
+const P = C.paper, B2 = C.cyan;
 
 export const fallbackStyle = (l: Line): LStyle => {
   switch (l.kind) {
