@@ -4,6 +4,7 @@ import { ff, fitSize, FontKey, FONTS } from "./lib/fonts";
 import { clamp, easeOut, easeOutBack, easeOutBounce, hash, rnd, rr, lerp } from "./lib/math";
 import { hat, beatPulse } from "./lib/audio";
 import { Line, LINES } from "./lib/lyrics";
+import { Sp, SpriteName } from "./sprite/Sp";
 
 export type StyleName =
   | "pop" | "slam" | "rise" | "drop" | "type" | "scramble" | "neon" | "wave" | "stretch" | "karaoke" | "stack"
@@ -20,6 +21,14 @@ export type LStyle = {
   hero?: number | false;
   /** soft dark shade behind the text block for legibility (default "shade" for flowing text) */
   plate?: "shade" | "none";
+  /** bubble style: draw this illustrated speech bubble (sprite) behind the words instead of the CSS box */
+  sprite?: SpriteName;
+  /** bubble sprite width as a multiple of w (default 1.3), height stretch (default 1), text offset inside it */
+  spriteW?: number;
+  spriteH?: number;
+  dy?: number;
+  /** the scene shows this line itself (illustrated word art), so the lyric layer skips it */
+  hide?: boolean;
 };
 
 const NO_HERO: StyleName[] = ["spiral", "ticker", "tunnel", "scatter", "neon", "chant", "stamp", "whisper", "bubble", "comic", "vertical"];
@@ -424,6 +433,18 @@ const LyricLine: React.FC<{ line: Line; st: LStyle; T: number }> = ({ line, st: 
     <div style={{ position: "absolute", left: x - w * 0.7, width: w * 1.4, top: y - plateH / 2, height: plateH, opacity: clamp(lt / 0.2) * exitO, background: "radial-gradient(ellipse closest-side, rgba(6,4,5,0.66) 0%, rgba(6,4,5,0.42) 55%, rgba(6,4,5,0) 100%)", pointerEvents: "none" }} />
   ) : null;
 
+  if (st.s === "bubble" && st.sprite) {
+    const s = easeOutBack(clamp(lt / 0.25), 2);
+    const bw = w * (st.spriteW ?? 1.3);
+    return (
+      <div style={{ position: "absolute", left: x - w / 2, width: w, top: y, transform: `translateY(-50%) scale(${Math.max(0, s)}) rotate(${st.rot ?? -3}deg) ${exitT}`, opacity: exitO }}>
+        <div style={{ position: "absolute", left: "50%", top: "50%", width: 0, height: 0 }}>
+          <Sp n={st.sprite} x={0} y={-(st.dy ?? 0)} w={bw} sy={st.spriteH ?? 1} />
+        </div>
+        <div style={{ position: "relative", display: "flex", flexWrap: "wrap", justifyContent: "center", columnGap: fs * 0.25, ...common, textShadow: "none", WebkitTextStroke: "0px transparent" }}>{body}</div>
+      </div>
+    );
+  }
   if (st.s === "bubble") {
     const s = easeOutBack(clamp(lt / 0.25), 2);
     return (
@@ -452,6 +473,7 @@ export const LyricsLayer: React.FC<{ T: number; styles: Record<number, LStyle>; 
   const out: React.ReactNode[] = [];
   LINES.forEach((l, k) => {
     const st = styles[l.id] ?? fallback(l);
+    if (st.hide) return;
     const tail = st.tail ?? 0.22;
     const next = LINES[k + 1];
     const lastWord = l.words[l.words.length - 1].t;

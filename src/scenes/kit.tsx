@@ -30,15 +30,3 @@ export const Glow: React.FC<{ cx: number; cy: number; r: number; color: string; 
     <circle cx={cx} cy={cy} r={r} fill={`url(#${id})`} />
   </>
 );
-
-/** Striped retro sun (horizontal cuts toward the bottom). */
-export const StripeSun: React.FC<{ cx: number; cy: number; r: number; fill: string; bg: string; t?: number; cuts?: number }> = ({ cx, cy, r, fill, bg, t = 0, cuts = 7 }) => (
-  <g>
-    <circle cx={cx} cy={cy} r={r} fill={fill} />
-    {Array.from({ length: cuts }).map((_, i) => {
-      const k = i / cuts;
-      const yy = cy + r * (0.1 + k * 0.9) + ((t * 30) % (r / cuts)) * 0;
-      return <rect key={i} x={cx - r - 4} y={yy} width={r * 2 + 8} height={4 + k * r * 0.09} fill={bg} />;
-    })}
-  </g>
-);

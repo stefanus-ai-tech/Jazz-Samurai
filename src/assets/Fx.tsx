@@ -35,22 +35,6 @@ export const SpeedLines: React.FC<{ cx?: number; cy?: number; n?: number; inner?
   );
 };
 
-export const HalftoneRect: React.FC<{ x?: number; y?: number; w?: number; h?: number; r?: number; gap?: number; color?: string; angle?: number; opacity?: number }> = ({
-  x = 0, y = 0, w = 1080, h = 1920, r = 7, gap = 22, color = C.ink, angle = 30, opacity = 1,
-}) => {
-  const uid = useUid("ht");
-  return (
-    <g opacity={opacity}>
-      <defs>
-        <pattern id={uid} width={gap} height={gap} patternUnits="userSpaceOnUse" patternTransform={`rotate(${angle})`}>
-          <circle cx={gap / 2} cy={gap / 2} r={r} fill={color} />
-        </pattern>
-      </defs>
-      <rect x={x} y={y} width={w} height={h} fill={`url(#${uid})`} />
-    </g>
-  );
-};
-
 export const Stars: React.FC<{ n?: number; seed?: number; t?: number; color?: string; h?: number; stretch?: number }> = ({ n = 120, seed = 3, t = 0, color = C.paper, h = 1920, stretch = 0 }) => (
   <g>
     {Array.from({ length: n }).map((_, i) => {
@@ -90,26 +74,34 @@ export const Embers: React.FC<{ t: number; n?: number; seed?: number; colors?: s
 export const Shock: React.FC<{ cx: number; cy: number; p: number; R?: number; color?: string; width?: number }> = ({ cx, cy, p, R = 900, color = C.paper, width = 40 }) =>
   p <= 0 || p >= 1 ? null : <circle cx={cx} cy={cy} r={R * p} fill="none" stroke={color} strokeWidth={width * (1 - p)} opacity={1 - p} />;
 
-export const Starburst: React.FC<{ cx: number; cy: number; r1: number; r2: number; n?: number; fill?: string; stroke?: string; rot?: number; seed?: number }> = ({ cx, cy, r1, r2, n = 18, fill = C.paper, stroke = C.ink, rot = 0, seed = 2 }) => {
-  const pts: string[] = [];
-  for (let i = 0; i < n * 2; i++) {
-    const a = (i / (n * 2)) * Math.PI * 2;
-    const r = i % 2 ? r1 : r2 * rr(seed, i, 0.8, 1.15);
-    pts.push(`${(Math.cos(a) * r).toFixed(1)},${(Math.sin(a) * r).toFixed(1)}`);
-  }
-  return <polygon transform={`translate(${cx},${cy}) rotate(${rot})`} points={pts.join(" ")} fill={fill} stroke={stroke} strokeWidth={10} strokeLinejoin="round" />;
+/** Japanese wave-scale (seigaiha) pattern */
+export const Seigaiha: React.FC<{ w?: number; h?: number; r?: number; c1?: string; c2?: string; bg?: string; dx?: number; dy?: number; opacity?: number }> = ({
+  w = 1080, h = 1920, r = 60, c1 = C.blue, c2 = C.paper, bg = C.navy, dx = 0, dy = 0, opacity = 1,
+}) => {
+  const uid = useUid("sei");
+  const rings = [1, 0.78, 0.56, 0.34];
+  const scallop = (cx: number, cy: number, k: number) => (
+    <g key={`${cx}-${cy}-${k}`}>
+      {rings.map((q, j) => (
+        <circle key={j} cx={cx} cy={cy} r={r * q} fill={j % 2 ? bg : c1} stroke={c2} strokeWidth={r * 0.05} />
+      ))}
+    </g>
+  );
+  return (
+    <g opacity={opacity}>
+      <defs>
+        <pattern id={uid} width={r * 2} height={r} patternUnits="userSpaceOnUse" x={dx} y={dy}>
+          <rect width={r * 2} height={r} fill={bg} />
+          {scallop(r, 0, 0)}
+          {scallop(0, r * 0.5, 1)}
+          {scallop(r * 2, r * 0.5, 2)}
+          {scallop(r, r, 3)}
+        </pattern>
+      </defs>
+      <rect width={w} height={h} fill={`url(#${uid})`} />
+    </g>
+  );
 };
-
-/** Hypnotic op-art rings */
-export const Hypno: React.FC<{ cx?: number; cy?: number; rot: number; n?: number; c1?: string; c2?: string; zoom?: number }> = ({ cx = 540, cy = 960, rot, n = 26, c1 = C.red, c2 = C.ink, zoom = 0 }) => (
-  <g transform={`translate(${cx},${cy}) rotate(${rot})`}>
-    {Array.from({ length: n }).map((_, i) => {
-      const k = n - i;
-      const r = ((k + (zoom % 1)) / n) * 1500;
-      return <circle key={i} cx={Math.sin(k * 0.6 + rot * 0.02) * 18} cy={0} r={r} fill={k % 2 ? c1 : c2} />;
-    })}
-  </g>
-);
 
 /* ---------- HTML texture layers (absolute) ---------- */
 
@@ -146,23 +138,6 @@ export const Smoke: React.FC<{ t: number; n?: number; color?: string; seed?: num
     })}
   </>
 );
-
-/** Brush stroke revealed left→right (reveal 0..1). */
-export const Brush: React.FC<{ x: number; y: number; w: number; h: number; color: string; reveal?: number; rot?: number; variant?: number; opacity?: number; flip?: boolean }> = ({
-  x, y, w, h, color, reveal = 1, rot = 0, variant = 0, opacity = 1, flip = false,
-}) => (
-  <Tex
-    src={`brush${variant % 3}.png`} color={color} x={x} y={y} w={w} h={h} rot={rot} opacity={opacity}
-    clip={`inset(0 ${flip ? 0 : (1 - reveal) * 100}% 0 ${flip ? (1 - reveal) * 100 : 0}%)`}
-    style={flip ? { transform: `rotate(${rot}deg) scaleX(-1)` } : undefined}
-  />
-);
-
-export const Splat: React.FC<{ x: number; y: number; size: number; color: string; v?: number; rot?: number; p?: number; opacity?: number }> = ({ x, y, size, color, v = 0, rot = 0, p = 1, opacity = 1 }) => {
-  const k = Math.min(1, p);
-  const s = size * (0.2 + 0.8 * (1 - Math.pow(1 - k, 4)));
-  return <Tex src={`splat${v % 4}.png`} color={color} x={x} y={y} w={s} h={s} rot={rot} opacity={opacity} />;
-};
 
 /** Ensō drawn clockwise as p goes 0..1 */
 export const Enso: React.FC<{ x: number; y: number; size: number; color: string; p: number; rot?: number }> = ({ x, y, size, color, p, rot = 0 }) => (

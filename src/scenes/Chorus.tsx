@@ -1,292 +1,226 @@
 import React from "react";
 import { C } from "../lib/constants";
-import { clamp, decay, easeIn, easeInOut, easeOut, easeOutBack, prog, rr, lerp } from "../lib/math";
-import { bass, beatPulse, bassHit, hat, vocal, lastIdx, AUDIO, pulse } from "../lib/audio";
-import { LINES } from "../lib/lyrics";
+import { clamp, decay, easeIn, easeInOut, easeOut, easeOutBack, prog, rr } from "../lib/math";
+import { AUDIO, bass, bassHit, beatCount, beatPulse, lastIdx, since } from "../lib/audio";
+import { wt } from "../lib/lyrics";
 import { Fill, Svg, Cam, Glow, SceneFC } from "./kit";
-import { Samurai } from "../assets/Samurai";
-import { Katana } from "../assets/Blade";
-import { Vinyl, Tomoe } from "../assets/Vinyl";
-import { Globe, Footprint, BlackHole, PocketWatch } from "../assets/Props";
-import { Torii, PetalStorm, Petal, Taiko, Grass } from "../assets/Japan";
-import { Kanji, Smoke, Halftone, Rays, Stars, SpeedLines, Shock, Paper, Splat, Starburst, Embers } from "../assets/Fx";
+import { Rays, Halftone, Paper, Stars, Shock, SpeedLines } from "../assets/Fx";
+import { Sp, SpOrbit, SpTwinkle, SpriteName, pop, stamp, sway } from "../sprite/Sp";
 
-/** I don't run when the world spins fast */
+/** 83.55 → 86.35  "I don't run when the world spins fast" */
 export const WorldSpin: SceneFC = ({ t, T }) => (
   <Fill bg={C.ink}>
     <Svg>
-      <SpeedLines t={T} n={120} inner={520} color={C.blue2} />
-      <Globe x={540} y={820} R={470} spin={T * 9} />
-      <Glow id="ws-g" cx={540} cy={1500} r={500} color={C.red} o={0.5} />
-      <Samurai x={540} y={1640} s={1.35} t={T} wind={1} rim={C.red} />
+      <Glow id="ws-g" cx={540} cy={760} r={900} color={C.blue} o={0.35} />
+      <Stars n={70} t={T} />
+    </Svg>
+    <Sp n="galaxy" x={540} y={760} w={1500} r={T * 160} blend="screen" />
+    <Sp n="planet_blue" x={540 + Math.cos(T * 3) * 420} y={760 + Math.sin(T * 3) * 160} w={150} />
+    <Sp n="planet_cream" x={540 + Math.cos(T * 3 + 3) * 460} y={760 + Math.sin(T * 3 + 3) * 180} w={120} />
+    <Sp n="ronin_red_stand" x={540} y={1760} h={760} ay={1} />
+  </Fill>
+);
+
+/** 86.35 → 89.0  "I let every little moment last" — freeze frame on film */
+export const FreezeFrame: SceneFC = ({ t, T }) => {
+  const k = easeOutBack(clamp(t / 0.3));
+  return (
+    <Fill bg={C.paper}>
+      <Paper opacity={0.95} />
+      <Halftone color={C.red} size={24} dot={22} opacity={0.25} />
+      <div style={{ position: "absolute", inset: 0, transform: `rotate(${-4 + (1 - k) * 8}deg) scale(${0.9 + 0.1 * k})`, transformOrigin: "540px 1050px" }}>
+        <Sp n="filmstrip" x={540} y={1060} h={1180} filter="drop-shadow(0 18px 0 rgba(0,0,0,0.35))" />
+        <Sp n="ronin_red_attack" x={540} y={800} w={470} filter="saturate(0.3) contrast(1.3)" />
+        <Sp n="hourglass_tilt" x={540} y={1330} h={400} r={sway(T, 2)} />
+      </div>
+    </Fill>
+  );
+};
+
+/** 89.0 → 91.6  "One step left and a half step back" */
+export const DanceSteps: SceneFC = ({ T }) => {
+  const left = wt(22, 3), back = wt(22, 7);
+  const x = 600 - 260 * easeOutBack(prog(T, left, left + 0.3)) + 130 * easeOutBack(prog(T, back, back + 0.3));
+  return (
+    <Fill bg={C.blue}>
+      <Svg>
+        <Rays rot={T * 6} n={24} c1={C.blue2} c2={C.blue} />
+      </Svg>
+      <Halftone color={C.navy} size={22} dot={28} opacity={0.35} />
+      <Sp n="arrow_red" x={300} y={1120} w={360} flip s={pop(T, left)} />
+      <Sp n="arrow_white" x={760} y={1260} w={280} s={pop(T, back)} />
+      <Sp n="ronin_blue_crouch" x={x} y={1740} w={900} ay={1} skew={-6 * decay(T, left, 0.25) + 6 * decay(T, back, 0.25)} />
+    </Fill>
+  );
+};
+
+/** 91.6 → 95.3  "Let the bassline bend till the vinyl cracks" */
+export const VinylCrack: SceneFC = ({ t, T }) => {
+  const crack = wt(23, 7);
+  const c = prog(T, crack, crack + 0.9);
+  const bend = Math.sin(T * 5) * 0.08 * (1 - c) * prog(t, 0.6, 1.6);
+  const rot = T * 140;
+  const halves = [
+    { clip: "polygon(0 0, 56% 0, 46% 38%, 60% 58%, 47% 100%, 0 100%)", dx: -1 },
+    { clip: "polygon(56% 0, 100% 0, 100% 100%, 47% 100%, 60% 58%, 46% 38%)", dx: 1 },
+  ];
+  return (
+    <Fill bg={C.ink}>
+      <Svg>
+        <Glow id="vc-g" cx={540} cy={1040} r={800} color={C.red} o={0.35 + 0.3 * bass(T)} />
+        <Shock cx={540} cy={1040} p={c * 1.4} R={1100} color={C.paper} width={50} />
+      </Svg>
+      {T < crack ? (
+        <Sp n="record_bolt" x={540} y={1040} w={920} r={rot} sx={1 + bend} sy={1 - bend} skew={bend * 60} />
+      ) : (
+        halves.map((h, i) => (
+          <div key={i} style={{ position: "absolute", inset: 0, transform: `translate(${h.dx * easeOut(c) * 260}px, ${easeIn(c) * 300}px) rotate(${h.dx * c * 18}deg)`, transformOrigin: "540px 1040px" }}>
+            <Sp n="record_bolt" x={540} y={1040} w={920} r={crack * 140} style={{ clipPath: h.clip }} />
+          </div>
+        ))
+      )}
+      <Sp n="bolt_red2" x={300} y={760} w={320} s={pop(T, crack)} r={-10} />
+      <Sp n="bolt_blue" x={800} y={1360} w={260} s={pop(T, crack + 0.08)} r={12} />
+      <Sp n="slash_c" x={560} y={1040} w={700} s={pop(T, crack, 0.15)} blend="screen" />
+    </Fill>
+  );
+};
+
+/** 95.3 → 97.7  "Down, down, down in the pocket" — diving through torii gates */
+export const ToriiDive: SceneFC = ({ t, T }) => (
+  <Fill bg={C.ink}>
+    <Svg>
+      <Glow id="td-g" cx={540} cy={1000} r={700} color={C.red} o={0.6} />
+    </Svg>
+    {Array.from({ length: 7 }).map((_, k) => {
+      const z = (t * 0.55 + (6 - k) / 7) % 1;
+      const s = 0.12 * Math.pow(28, z);
+      return <Sp key={k} n="torii" x={540} y={1000} w={760} s={s} o={clamp((1 - z) * 4) * clamp(z * 5)} filter={`brightness(${0.5 + z * 0.7})`} />;
+    })}
+    <SpTwinkle names={["star4_red2", "star4_blue2", "star4_white"]} T={T} events={AUDIO.beats} size={[60, 110]} area={[120, 600, 960, 1500]} />
+  </Fill>
+);
+
+/** 97.7 → 100.35  "So damn deep, can't nobody stop it" */
+export const DeepDepth: SceneFC = ({ t, T }) => (
+  <Fill bg={C.navy}>
+    <Sp n="tunnel3" x={540} y={1020} w={1250} s={1 + t * 0.35 + beatPulse(T) * 0.03} />
+    <Sp n="tunnel3" x={540} y={1020} w={1250} s={(1 + t * 0.35) * 0.32} o={0.9} />
+    <Sp n="koi_blue" x={540 + Math.sin(T * 2) * 120} y={500 + t * 220} w={560 - t * 120} r={20 + t * 10} />
+    <Svg>
+      {Array.from({ length: 22 }).map((_, k) => {
+        const y = 1900 - ((rr(41, k, 0, 2000) + t * rr(42, k, 200, 500)) % 2000);
+        return <circle key={k} cx={rr(43, k, 60, 1020) + Math.sin(T * 2 + k) * 20} cy={y} r={rr(44, k, 6, 20)} fill="none" stroke={C.cyan} strokeWidth={3} opacity={0.6} />;
+      })}
     </Svg>
   </Fill>
 );
 
-/** I let every little moment last — freeze frame */
-export const FreezeFrame: SceneFC = ({ t, T }) => {
-  const freezeAt = 87.6;
-  const fz = T >= freezeAt;
-  const tt = fz ? freezeAt : T;
-  const jump = Math.sin(clamp((tt - 86.38) / 1.6) * Math.PI) * 260;
-  return (
-    <Fill bg={fz ? C.paper : C.navy}>
-      {fz && <Paper opacity={0.9} />}
-      <Cam z={fz ? 1 + (T - freezeAt) * 0.04 : 1}>
-        <Svg>
-          {!fz && <Stars t={T} n={60} />}
-          <circle cx={540} cy={760} r={330} fill={C.red} />
-          <PetalStorm t={tt} n={46} seed={5} colors={[C.red, C.ink, C.blue]} wind={140} speed={260} size={1.4} />
-          <Samurai x={540} y={1480 - jump} s={1.3} t={tt} walk={tt * 6} armL={70} armR={70} lean={-8} fill={C.ink} rim={fz ? C.blue : C.cyan} />
-        </Svg>
-      </Cam>
-      {fz && (
-        <div style={{ position: "absolute", inset: 40, border: `14px solid ${C.ink}`, boxShadow: `inset 0 0 0 8px ${C.red}` }} />
-      )}
-      {fz && <Kanji ch="瞬" x={170} y={260} size={200} color={C.red} font="jpAntique" opacity={clamp((T - freezeAt) / 0.1)} />}
-    </Fill>
-  );
-};
-
-/** One step left and a half step back — dance diagram */
-export const DanceSteps: SceneFC = ({ t, T }) => {
-  const steps = [
-    { at: 89.04, x: 760, y: 1380, left: false, rot: 0 },
-    { at: 89.6, x: 470, y: 1180, left: true, rot: -18 },
-    { at: 90.08, x: 200, y: 980, left: true, rot: -30 },
-    { at: 90.5, x: 380, y: 1230, left: false, rot: 10 },
-    { at: 91.12, x: 600, y: 1420, left: false, rot: 22 },
+/** 100.35 → 103.05  "Low, low, lower than the ground" — the camera sinks underground */
+export const Strata: SceneFC = ({ t, T }) => {
+  const dy = easeInOut(prog(t, 0.1, 2.6)) * 1500;
+  const bands = [C.coal, C.blood, "#2a0d10", C.navy, "#12081a", C.ink];
+  const buried: [SpriteName, number, number, number, number][] = [
+    ["record_black", 250, 1700, 360, 20], ["cassette", 820, 2000, 320, -18], ["tomoe", 330, 2400, 260, 0], ["katana", 640, 2650, 900, -12], ["hanko_shinobi", 880, 2900, 150, 6],
   ];
   return (
-    <Fill bg={C.paper}>
-      <Paper opacity={1} />
-      <Svg>
-        {Array.from({ length: 12 }).map((_, k) => (
-          <line key={k} x1={0} y1={700 + k * 90} x2={1080} y2={700 + k * 90} stroke={C.blue} strokeWidth={2} opacity={0.25} />
-        ))}
-        {steps.map((s, i) =>
-          T >= s.at ? (
-            <g key={i} opacity={easeOut(prog(T, s.at, s.at + 0.12))}>
-              <Footprint x={s.x} y={s.y} rot={s.rot} s={1.25 * (1.4 - 0.4 * easeOut(prog(T, s.at, s.at + 0.12)))} left={s.left} fill={i % 2 ? C.red : C.ink} />
-              <circle cx={s.x + 100} cy={s.y - 120} r={34} fill={C.blue} />
-              <text x={s.x + 100} y={s.y - 104} fontSize={44} textAnchor="middle" fill={C.paper} fontFamily={`"JS Bungee"`}>{i + 1}</text>
-            </g>
-          ) : null,
-        )}
-        {T > 89.6 && <path d="M760,1380 Q520,1120 200,980" stroke={C.ink} strokeWidth={6} strokeDasharray="18 14" fill="none" />}
-        {T > 90.5 && <path d="M200,980 Q380,1100 600,1420" stroke={C.red} strokeWidth={6} strokeDasharray="18 14" fill="none" markerEnd="" />}
-      </Svg>
-      <Kanji ch="歩" x={880} y={1600} size={260} color={C.ink} font="jpBrush" opacity={0.85} />
-    </Fill>
-  );
-};
-
-/** Let the bassline bend till the vinyl cracks */
-export const VinylCrack: SceneFC = ({ t, T }) => {
-  const crack = easeOut(prog(T, 93.9, 94.4));
-  const shake = crack > 0 ? Math.sin(T * 90) * 8 * (1 - prog(T, 94.0, 95.0)) : 0;
-  return (
-    <Fill bg={C.blue2}>
-      <Svg>
-        <Rays n={20} rot={-T * 15} c1={C.blue2} c2={C.navy} />
-      </Svg>
-      <Cam x={shake} z={1 + crack * 0.06}>
-        <Svg>
-          <Vinyl x={540} y={980} R={480} rot={T * (200 - crack * 180)} warp={Math.sin(T * 5) * 0.3 * bass(T) + crack * 0.2} crack={crack} />
-        </Svg>
-      </Cam>
-      <Kanji ch="割" x={540} y={300} size={220} color={C.red} font="jpDela" opacity={crack} rot={-8} />
-    </Fill>
-  );
-};
-
-/** Down, down, down in the pocket — torii tunnel dive */
-export const ToriiDive: SceneFC = ({ t, T }) => {
-  let speed = 0.6;
-  for (const wt of [95.36, 95.92, 96.48]) speed += decay(T, wt, 0.35) * 2.2;
-  const travel = t * 1.0 + [95.36, 95.92, 96.48].reduce((a, wt) => a + (T > wt ? (1 - Math.exp(-(T - wt) / 0.35)) * 0.8 : 0), 0);
-  const N = 12;
-  return (
     <Fill bg={C.ink}>
-      <Svg>
-        <Glow id="td-g" cx={540} cy={980} r={420} color={C.cyan} o={0.7} />
-        {Array.from({ length: N }).map((_, i) => {
-          const z = N - i - (travel % 1);
-          const s = 2.6 / (0.25 + z * 0.55);
-          if (s > 9) return null;
-          return <Torii key={i + Math.floor(travel)} x={540} y={980 + 230 * s} s={s} fill={(i + Math.floor(travel)) % 2 ? C.red : C.red2} opacity={clamp(1.4 - z / N)} />;
-        })}
-        <SpeedLines t={T} n={60} inner={650} color={C.cyan} opacity={0.15 + speed * 0.1} />
-      </Svg>
-    </Fill>
-  );
-};
-
-/** So damn deep, can't nobody stop it — deep-sea descent */
-export const DeepDepth: SceneFC = ({ t, T }) => {
-  const depth = Math.floor(lerp(400, 9999, clamp(t / 2.6)));
-  return (
-    <Fill bg={C.navy}>
-      <Svg>
-        <defs>
-          <linearGradient id="dd-g" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor={C.blue2} />
-            <stop offset="1" stopColor="#020309" />
-          </linearGradient>
-        </defs>
-        <rect width={1080} height={1920} fill="url(#dd-g)" />
-        {Array.from({ length: 6 }).map((_, k) => (
-          <polygon key={k} points={`${200 + k * 140},0 ${260 + k * 140},0 ${60 + k * 180},1920 ${-40 + k * 180},1920`} fill={C.cyan} opacity={0.05} />
+      <div style={{ position: "absolute", inset: 0, transform: `translateY(${-dy}px)` }}>
+        <Svg>
+          <rect width={1080} height={1300} fill={C.navy} />
+          <Stars n={50} t={T} h={1100} />
+          {bands.map((c, i) => (
+            <rect key={i} y={1300 + i * 380} width={1080} height={400} fill={c} />
+          ))}
+        </Svg>
+        <Sp n="skyline_jp" x={540} y={1320} w={1400} ay={1} />
+        <div style={{ position: "absolute", left: 0, top: 1300, width: 1080, height: 2300, backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.5) 30%, transparent 32%)`, backgroundSize: "22px 22px", opacity: 0.5 }} />
+        {buried.map(([n, x, y, w, r]) => (
+          <Sp key={n} n={n} x={x} y={y} w={w} r={r} o={0.85} />
         ))}
-        {Array.from({ length: 40 }).map((_, k) => {
-          const x = rr(1, k, 0, 1080) + Math.sin(T * 2 + k) * 14;
-          const y = 1950 - ((rr(2, k, 0, 2000) + t * rr(3, k, 200, 600)) % 2000);
-          return <circle key={k} cx={x} cy={y} r={rr(4, k, 4, 18)} fill="none" stroke={C.cyan} strokeWidth={3} opacity={0.6} />;
-        })}
-        <g transform={`translate(540, ${1250 + t * 30}) scale(${1 - t * 0.12})`}>
-          <Samurai x={0} y={0} s={0.9} t={T} wind={0.2} armL={140} armR={140} rim={C.blue} />
-        </g>
-        <rect x={60} y={300} width={16} height={1200} fill={C.paper} opacity={0.3} />
-        <rect x={60} y={300 + clamp(t / 2.6) * 1150} width={16} height={50} fill={C.red} />
-      </Svg>
-      <div style={{ position: "absolute", left: 96, top: 260 + clamp(t / 2.6) * 1150, fontFamily: `"JS SpaceMono"`, fontSize: 40, color: C.red }}>-{depth}m</div>
-      <Kanji ch="深" x={860} y={1560} size={300} color={C.cyan} font="jpBrush" opacity={0.6} />
+      </div>
+      <Sp n="ronin_red_stand" x={540} y={1180 + Math.sin(T * 2) * 10} h={560} r={Math.sin(T * 1.5) * 4} o={prog(t, 0.6, 1.2)} />
     </Fill>
   );
 };
 
-/** Low, low, lower than the ground — earth strata cross-section */
-export const Strata: SceneFC = ({ t, T }) => {
-  const pan = easeInOut(clamp(t / 2.6)) * 900;
-  const layers = [C.blood, C.red2, C.ink, C.navy, C.blood, C.ink, C.blue2, C.ink];
-  return (
-    <Fill bg={C.navy}>
-      <Cam y={-pan}>
-        <Svg>
-          <rect y={-400} width={1080} height={1100} fill={C.navy} />
-          <circle cx={820} cy={300} r={110} fill={C.paper} />
-          <Grass t={T} y={700} n={90} h={90} fill={C.ink} />
-          <Samurai x={300} y={700} s={0.55} t={T} />
-          {layers.map((col, k) => {
-            const y0 = 700 + k * 260;
-            let d = `M0,${y0}`;
-            for (let i = 0; i <= 12; i++) d += ` L${i * 90},${y0 + Math.sin(i * 1.3 + k) * 30}`;
-            d += ` L1080,${y0 + 1400} L0,${y0 + 1400} Z`;
-            return <path key={k} d={d} fill={col} />;
-          })}
-          {Array.from({ length: 7 }).map((_, k) => (
-            <Vinyl key={k} x={rr(8, k, 120, 960)} y={1000 + k * 260} R={rr(9, k, 50, 110)} rot={k * 40} />
-          ))}
-          {Array.from({ length: 8 }).map((_, k) => (
-            <path key={`r${k}`} d={`M${300 + k * 10},700 q ${rr(1, k, -80, 80)},200 ${rr(2, k, -140, 140)},${300 + k * 40}`} stroke={C.ink} strokeWidth={6} fill="none" />
-          ))}
-        </Svg>
-      </Cam>
-      <Kanji ch="底" x={880} y={1500} size={260} color={C.red} font="jpDela" opacity={0.85} />
-    </Fill>
-  );
-};
+/** 103.05 → 107  "Black hole groove gonna pull you down" */
+export const BlackHoleScene: SceneFC = ({ t, T }) => (
+  <Fill bg={C.ink}>
+    <Svg>
+      <Stars n={120} t={T} stretch={0.02 * t} />
+    </Svg>
+    <Sp n="vortex2" x={540} y={900} w={1400} r={-T * 50} blend="screen" />
+    <Sp n="portal_red" x={540} y={900} w={1150} r={-14} sy={1.4} o={0.8} blend="screen" />
+    <SpOrbit names={["record_tomoe", "note_red", "clock_roman", "note_blue", "star8_red2", "cassette", "star4_white"]} n={14} t={T} seed={8} size={[110, 220]} R={[60, 760]} pull={1} speed={0.9} tilt={0.45} cy={900} />
+    <Sp n="eclipse" x={540} y={900} h={760 * (1 + bass(T) * 0.08)} r={T * 20} />
+  </Fill>
+);
 
-/** Black hole groove gonna pull you down */
-export const BlackHoleScene: SceneFC = ({ t, T, d }) => {
-  const pull = easeIn(clamp(t / d));
-  return (
-    <Fill bg="#000">
-      <Cam z={1 + pull * 0.5} r={t * 6}>
-        <Svg>
-          <Stars n={160} t={T} stretch={0.1 + pull * 0.6} />
-          <BlackHole x={540} y={900} R={190} spin={T * 1.6} pull={pull} />
-          {Array.from({ length: 10 }).map((_, k) => {
-            const a = k * 0.63 + t * 2.4;
-            const r = 900 * (1 - clamp((t * 0.4 + k * 0.1) % 1));
-            return <Petal key={k} x={540 + Math.cos(a) * r} y={900 + Math.sin(a) * r * 0.5} rot={a * 90} s={1.5} fill={k % 2 ? C.red : C.cyan} />;
-          })}
-          {Array.from({ length: 4 }).map((_, k) => {
-            const a = k * 1.6 + t * 1.8;
-            const r = 760 * (1 - clamp((t * 0.35 + k * 0.22) % 1));
-            return <PocketWatch key={`w${k}`} x={540 + Math.cos(a) * r} y={900 + Math.sin(a) * r * 0.5} s={0.5 * (r / 760 + 0.2)} rot={a * 80} t={T} />;
-          })}
-        </Svg>
-      </Cam>
-    </Fill>
-  );
-};
-
-/** Ooh let it breathe / underneath — moonlit water breathing rings */
+/** 107 → 113.95  "Ooh, let it breathe / Ooh, underneath" — moon over still water */
 export const Breathe: SceneFC = ({ t, T }) => {
-  const rings = [107.1, 107.9, 108.4, 109.8, 110.9, 111.8, 112.6];
+  const hi = lastIdx(AUDIO.bassOnsets, T);
   return (
     <Fill bg={C.navy}>
       <Svg>
-        <defs>
-          <linearGradient id="br-w" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor={C.blue2} />
-            <stop offset="1" stopColor="#020617" />
-          </linearGradient>
-        </defs>
-        <Stars n={70} t={T} h={980} />
-        <circle cx={540} cy={560} r={170 + vocal(T) * 20} fill={C.paper} />
-        <rect y={980} width={1080} height={940} fill="url(#br-w)" />
-        {Array.from({ length: 9 }).map((_, k) => (
-          <rect key={k} x={540 - 170 + rr(1, k, -30, 30) + Math.sin(T * 2 + k) * 20} y={1010 + k * 34} width={340 - k * 28} height={8} fill={C.paper} opacity={0.6 - k * 0.05} />
-        ))}
-        {rings.map((r0, k) =>
-          T > r0 ? <ellipse key={k} cx={540} cy={1180} rx={(T - r0) * 330} ry={(T - r0) * 70} fill="none" stroke={k % 2 ? C.cyan : C.paper} strokeWidth={5} opacity={clamp(1 - (T - r0) / 2.4)} /> : null,
-        )}
+        <Glow id="br-g" cx={540} cy={540} r={700} color={C.paper} o={0.2} />
+        <Stars n={60} t={T} h={980} />
+        <rect y={980} width={1080} height={940} fill="#040820" />
       </Svg>
+      <Sp n="moon3" x={540} y={560} w={620} glow={C.paper} glowR={50} />
+      <Sp n="moon3" x={540} y={1400} w={620} sy={-0.5} o={0.25} skew={Math.sin(T * 2) * 4} filter="blur(3px)" />
+      <Sp n="koi_pair" x={540} y={1420} w={720} r={T * 14} o={0.9} />
+      {[0, 1, 2].map((k) => {
+        const j = hi - k;
+        if (j < 0) return null;
+        const p = clamp((T - AUDIO.bassOnsets[j]) / 2.2);
+        return p < 1 ? <Sp key={j} n="portal_cream" x={540} y={1420} w={300 + p * 900} sy={1.2} o={(1 - p) * 0.45} blend="screen" /> : null;
+      })}
     </Fill>
   );
 };
 
-/** Don't rush that beat / shuffle those feet */
-export const Shuffle: SceneFC = ({ t, T }) => {
-  const ph = T * 9.4;
+/** 113.95 → 116.75  "Don't rush that beat! Let it shuffle those feet!" */
+export const Shuffle: SceneFC = ({ T }) => {
+  const b = beatCount(T);
+  const p = beatPulse(T, 0.14);
   return (
     <Fill bg={C.red}>
-      <Svg>
-        {Array.from({ length: 10 }).map((_, r) =>
-          Array.from({ length: 8 }).map((_, c) => {
-            const y0 = 1000 + Math.pow(r / 10, 1.6) * 920;
-            const y1 = 1000 + Math.pow((r + 1) / 10, 1.6) * 920;
-            const w0 = 60 + r * 40, w1 = 60 + (r + 1) * 40;
-            const x0 = 540 + (c - 4) * w0, x1 = 540 + (c - 4) * w1;
-            return <polygon key={`${r}-${c}`} points={`${x0},${y0} ${x0 + w0},${y0} ${x1 + w1},${y1} ${x1},${y1}`} fill={(r + c) % 2 ? C.ink : C.paper} />;
-          }),
-        )}
-        <Footprint x={380 + Math.sin(ph) * 90} y={1500 - Math.max(0, Math.cos(ph)) * 60} rot={-10 + Math.sin(ph) * 14} s={1.5} left fill={C.ink} />
-        <Footprint x={700 - Math.sin(ph) * 90} y={1500 - Math.max(0, -Math.cos(ph)) * 60} rot={10 - Math.sin(ph) * 14} s={1.5} left={false} fill={C.blue} />
-      </Svg>
+      <div style={{ position: "absolute", left: 540, top: 0, width: 540, height: 1920, background: C.blue2 }} />
+      <Halftone color={C.ink} size={22} dot={26} opacity={0.22} />
+      <Sp n="speaker_red" x={190} y={1150} h={760} s={1 + (b % 2 ? 0 : p * 0.08)} />
+      <Sp n="speaker_blue" x={890} y={1150} h={780} s={1 + (b % 2 ? p * 0.08 : 0)} />
+      {Array.from({ length: 6 }).map((_, k) => (
+        <Sp key={k} n={k % 2 ? "chevron_blue" : "chevron_red"} x={((k * 220 + T * 400) % 1320) - 120} y={1560 + (k % 2) * 40} w={110} />
+      ))}
     </Fill>
   );
 };
 
-/** BOOM—CHA hits: taiko booms + katana slashes */
-const BOOMS = [116.8, 118.7, 119.3, 120.2, 121.0, 121.7, 123.0];
-const CHAS = [117.2, 119.8, 120.8, 122.5, 123.5];
-export const BoomCha: SceneFC = ({ t, T }) => {
-  const bi = lastIdx(BOOMS, T), ci = lastIdx(CHAS, T);
-  const lastBoom = bi >= 0 ? BOOMS[bi] : -9, lastCha = ci >= 0 ? CHAS[ci] : -9;
-  const isCha = lastCha > lastBoom;
-  const k = Math.max(0, bi) + Math.max(0, ci);
-  const bg = [C.red, C.ink, C.blue, C.paper][k % 4];
-  const fg = [C.ink, C.red, C.ink, C.red][k % 4];
-  const hb = decay(T, lastBoom, 0.25), hc = decay(T, lastCha, 0.22);
-  const ang = [-30, 25, -15, 35, -40][Math.max(0, ci) % 5];
+const BOOMS = [116.8, 118.7, 120.2, 121.0, 123.0];
+
+/** 116.75 → 124.4  BOOM—CHA! five slams, each its own panel */
+export const BoomCha: SceneFC = ({ T }) => {
+  const i = Math.max(0, lastIdx(BOOMS, T));
+  const t0 = BOOMS[i];
+  const k = stamp(T, t0, 0.12);
+  const bgs = [C.red, C.blue2, C.ink, C.navy, C.red];
+  const ray = [C.red2, C.blue, C.blood, C.blue2, C.hot];
+  const word = i === 1 || i === 3;
   return (
-    <Fill bg={bg}>
+    <Fill bg={bgs[i]}>
       <Svg>
-        <Rays n={22} rot={T * 30 + k * 20} c1={fg} c2={bg} />
-        <circle cx={540} cy={940} r={380} fill={bg} />
-        <Taiko x={540} y={940} R={330 * (1 + hb * 0.12)} hit={hb} rot={T * 90} skin={C.paper} tomoe={C.red} />
-        <Shock cx={540} cy={940} p={clamp((T - lastBoom) / 0.5)} R={1300} color={fg} width={80} />
-        {isCha && hc > 0.02 && (
-          <g transform={`rotate(${ang} 540 940)`}>
-            <rect x={-400} y={930 - 70 * hc} width={1900} height={140 * hc} fill={C.paper} />
-            <rect x={-400} y={930 - 16} width={1900} height={32} fill={C.cyan} opacity={hc} />
-          </g>
-        )}
+        <Rays rot={T * (i % 2 ? -30 : 30)} n={28} c1={ray[i]} c2={bgs[i]} />
+        <Shock cx={540} cy={1000} p={clamp((T - t0) / 0.5)} R={1100} color={C.paper} width={50} />
       </Svg>
-      <Kanji ch={isCha ? "斬" : "轟"} x={540} y={1560} size={260} color={fg} font="jpDela" opacity={0.9} rot={isCha ? -10 : 6} />
+      {i === 0 && <Sp n="rising_sun4" x={540} y={1050} w={1000} r={T * 40} s={k} />}
+      {i === 0 && <Sp n="tomoe" x={540} y={1050} w={420} r={-T * 120} s={k} />}
+      {i === 2 && <Sp n="record_tomoe" x={540} y={1050} w={940} r={T * 300} s={k} />}
+      {i === 4 && <Sp n="burst_cream" x={540} y={1050} w={1000} r={T * 20} s={k} />}
+      {i === 4 && <Sp n="hanko_samurai" x={540} y={1050} w={420} r={-6} s={stamp(T, t0 + 0.1)} />}
+      {word && <Sp n={i === 1 ? "burst_blue3" : "burst_red2"} x={540} y={960} w={1400} r={T * 30} o={0.8} blend="screen" />}
+      {word && <Sp n="word_boomcha" x={540} y={960} w={1040} s={k} r={i === 1 ? -6 : 5} />}
+      <SpTwinkle names={["starburst2", "star8_red2", "star4_white", "starburst_red2"]} T={T} events={AUDIO.beats} size={[120, 220]} area={[100, 600, 980, 1500]} />
     </Fill>
   );
 };
