@@ -1,0 +1,2437 @@
+[
+ {
+  "id": 0,
+  "text": "Dum... ba-dum... dum-dum...",
+  "kind": "scat",
+  "start": 12.86,
+  "end": 14.47,
+  "words": [
+   {
+    "w": "Dum...",
+    "t": 12.86
+   },
+   {
+    "w": "ba-dum...",
+    "t": 13.4
+   },
+   {
+    "w": "dum-dum...",
+    "t": 13.86
+   }
+  ]
+ },
+ {
+  "id": 1,
+  "text": "Bum... ba-dum... BOW!",
+  "kind": "shout",
+  "start": 14.52,
+  "end": 16.1,
+  "words": [
+   {
+    "w": "Bum...",
+    "t": 14.52
+   },
+   {
+    "w": "ba-dum...",
+    "t": 14.84
+   },
+   {
+    "w": "BOW!",
+    "t": 15.38
+   }
+  ]
+ },
+ {
+  "id": 2,
+  "text": "Tss-ka... boom... tss-ka...",
+  "kind": "scat",
+  "start": 16.12,
+  "end": 18.52,
+  "words": [
+   {
+    "w": "Tss-ka...",
+    "t": 16.12
+   },
+   {
+    "w": "boom...",
+    "t": 16.86
+   },
+   {
+    "w": "tss-ka...",
+    "t": 17.62
+   }
+  ]
+ },
+ {
+  "id": 3,
+  "text": "Boom-ka-tss... ka-boom...",
+  "kind": "scat",
+  "start": 19.1,
+  "end": 21.2,
+  "words": [
+   {
+    "w": "Boom-ka-tss...",
+    "t": 19.1
+   },
+   {
+    "w": "ka-boom...",
+    "t": 20.12
+   }
+  ]
+ },
+ {
+  "id": 4,
+  "text": "Mm.",
+  "kind": "spoken",
+  "start": 22.74,
+  "end": 23.6,
+  "words": [
+   {
+    "w": "Mm.",
+    "t": 22.74
+   }
+  ]
+ },
+ {
+  "id": 5,
+  "text": "Feel that?",
+  "kind": "spoken",
+  "start": 24.4,
+  "end": 25.94,
+  "words": [
+   {
+    "w": "Feel",
+    "t": 24.4
+   },
+   {
+    "w": "that?",
+    "t": 25.04
+   }
+  ]
+ },
+ {
+  "id": 6,
+  "text": "Don't chase the beat.",
+  "kind": "spoken",
+  "start": 27.04,
+  "end": 28.82,
+  "words": [
+   {
+    "w": "Don't",
+    "t": 27.04
+   },
+   {
+    "w": "chase",
+    "t": 27.36
+   },
+   {
+    "w": "the",
+    "t": 27.76
+   },
+   {
+    "w": "beat.",
+    "t": 27.92
+   }
+  ]
+ },
+ {
+  "id": 7,
+  "text": "Let it come to you.",
+  "kind": "spoken",
+  "start": 30.32,
+  "end": 31.87,
+  "words": [
+   {
+    "w": "Let",
+    "t": 30.32
+   },
+   {
+    "w": "it",
+    "t": 30.72
+   },
+   {
+    "w": "come",
+    "t": 30.88
+   },
+   {
+    "w": "to",
+    "t": 31.2
+   },
+   {
+    "w": "you.",
+    "t": 31.44
+   }
+  ]
+ },
+ {
+  "id": 8,
+  "text": "Wah!",
+  "kind": "shout",
+  "start": 31.92,
+  "end": 33.4,
+  "words": [
+   {
+    "w": "Wah!",
+    "t": 31.92
+   }
+  ]
+ },
+ {
+  "id": 9,
+  "text": "Black silk, black shoes, midnight stroll",
+  "kind": "rap",
+  "start": 52.72,
+  "end": 55.31,
+  "words": [
+   {
+    "w": "Black",
+    "t": 52.72
+   },
+   {
+    "w": "silk,",
+    "t": 52.96
+   },
+   {
+    "w": "black",
+    "t": 53.44
+   },
+   {
+    "w": "shoes,",
+    "t": 53.68
+   },
+   {
+    "w": "midnight",
+    "t": 54.16
+   },
+   {
+    "w": "stroll",
+    "t": 54.8
+   }
+  ]
+ },
+ {
+  "id": 10,
+  "text": "Got a little bit of jazz in a samurai soul",
+  "kind": "rap",
+  "start": 55.36,
+  "end": 58.19,
+  "words": [
+   {
+    "w": "Got",
+    "t": 55.36
+   },
+   {
+    "w": "a",
+    "t": 55.6
+   },
+   {
+    "w": "little",
+    "t": 55.68
+   },
+   {
+    "w": "bit",
+    "t": 56.0
+   },
+   {
+    "w": "of",
+    "t": 56.16
+   },
+   {
+    "w": "jazz",
+    "t": 56.32
+   },
+   {
+    "w": "in",
+    "t": 56.72
+   },
+   {
+    "w": "a",
+    "t": 56.8
+   },
+   {
+    "w": "samurai",
+    "t": 56.88
+   },
+   {
+    "w": "soul",
+    "t": 57.68
+   }
+  ]
+ },
+ {
+  "id": 11,
+  "text": "Blade on my back but my hands stay clean",
+  "kind": "rap",
+  "start": 58.24,
+  "end": 60.83,
+  "words": [
+   {
+    "w": "Blade",
+    "t": 58.24
+   },
+   {
+    "w": "on",
+    "t": 58.64
+   },
+   {
+    "w": "my",
+    "t": 58.8
+   },
+   {
+    "w": "back",
+    "t": 58.96
+   },
+   {
+    "w": "but",
+    "t": 59.28
+   },
+   {
+    "w": "my",
+    "t": 59.52
+   },
+   {
+    "w": "hands",
+    "t": 59.68
+   },
+   {
+    "w": "stay",
+    "t": 60.0
+   },
+   {
+    "w": "clean",
+    "t": 60.24
+   }
+  ]
+ },
+ {
+  "id": 12,
+  "text": "Walkin' through the smoke like a fever dream",
+  "kind": "rap",
+  "start": 60.88,
+  "end": 63.19,
+  "words": [
+   {
+    "w": "Walkin'",
+    "t": 60.88
+   },
+   {
+    "w": "through",
+    "t": 61.28
+   },
+   {
+    "w": "the",
+    "t": 61.44
+   },
+   {
+    "w": "smoke",
+    "t": 61.56
+   },
+   {
+    "w": "like",
+    "t": 61.96
+   },
+   {
+    "w": "a",
+    "t": 62.12
+   },
+   {
+    "w": "fever",
+    "t": 62.28
+   },
+   {
+    "w": "dream",
+    "t": 62.76
+   }
+  ]
+ },
+ {
+  "id": 13,
+  "text": "Low ride, high tide, nowhere to go",
+  "kind": "rap",
+  "start": 63.24,
+  "end": 65.87,
+  "words": [
+   {
+    "w": "Low",
+    "t": 63.24
+   },
+   {
+    "w": "ride,",
+    "t": 63.56
+   },
+   {
+    "w": "high",
+    "t": 63.96
+   },
+   {
+    "w": "tide,",
+    "t": 64.2
+   },
+   {
+    "w": "nowhere",
+    "t": 64.8
+   },
+   {
+    "w": "to",
+    "t": 65.36
+   },
+   {
+    "w": "go",
+    "t": 65.52
+   }
+  ]
+ },
+ {
+  "id": 14,
+  "text": "Got the whole damn city movin' extra slow",
+  "kind": "rap",
+  "start": 65.92,
+  "end": 68.51,
+  "words": [
+   {
+    "w": "Got",
+    "t": 65.92
+   },
+   {
+    "w": "the",
+    "t": 66.16
+   },
+   {
+    "w": "whole",
+    "t": 66.24
+   },
+   {
+    "w": "damn",
+    "t": 66.48
+   },
+   {
+    "w": "city",
+    "t": 66.8
+   },
+   {
+    "w": "movin'",
+    "t": 67.28
+   },
+   {
+    "w": "extra",
+    "t": 67.68
+   },
+   {
+    "w": "slow",
+    "t": 68.0
+   }
+  ]
+ },
+ {
+  "id": 15,
+  "text": "Clock says twelve but the rhythm says nine",
+  "kind": "rap",
+  "start": 68.56,
+  "end": 71.23,
+  "words": [
+   {
+    "w": "Clock",
+    "t": 68.56
+   },
+   {
+    "w": "says",
+    "t": 69.04
+   },
+   {
+    "w": "twelve",
+    "t": 69.44
+   },
+   {
+    "w": "but",
+    "t": 69.84
+   },
+   {
+    "w": "the",
+    "t": 70.0
+   },
+   {
+    "w": "rhythm",
+    "t": 70.16
+   },
+   {
+    "w": "says",
+    "t": 70.56
+   },
+   {
+    "w": "nine",
+    "t": 70.88
+   }
+  ]
+ },
+ {
+  "id": 16,
+  "text": "Everybody got a watch, nobody got time",
+  "kind": "rap",
+  "start": 71.28,
+  "end": 74.26,
+  "words": [
+   {
+    "w": "Everybody",
+    "t": 71.28
+   },
+   {
+    "w": "got",
+    "t": 71.84
+   },
+   {
+    "w": "a",
+    "t": 72.0
+   },
+   {
+    "w": "watch,",
+    "t": 72.16
+   },
+   {
+    "w": "nobody",
+    "t": 72.72
+   },
+   {
+    "w": "got",
+    "t": 73.12
+   },
+   {
+    "w": "time",
+    "t": 73.36
+   }
+  ]
+ },
+ {
+  "id": 17,
+  "text": "Get down, get down",
+  "kind": "back",
+  "start": 75.72,
+  "end": 77.6,
+  "words": [
+   {
+    "w": "Get",
+    "t": 75.72
+   },
+   {
+    "w": "down,",
+    "t": 76.0
+   },
+   {
+    "w": "get",
+    "t": 76.4
+   },
+   {
+    "w": "down",
+    "t": 76.62
+   }
+  ]
+ },
+ {
+  "id": 18,
+  "text": "Ba-da-bum, ba-da-bum",
+  "kind": "back",
+  "start": 79.1,
+  "end": 80.6,
+  "words": [
+   {
+    "w": "Ba-da-bum,",
+    "t": 79.1
+   },
+   {
+    "w": "ba-da-bum",
+    "t": 79.8
+   }
+  ]
+ },
+ {
+  "id": 19,
+  "text": "Get down, get down",
+  "kind": "back",
+  "start": 82.2,
+  "end": 83.58,
+  "words": [
+   {
+    "w": "Get",
+    "t": 82.2
+   },
+   {
+    "w": "down,",
+    "t": 82.5
+   },
+   {
+    "w": "get",
+    "t": 82.88
+   },
+   {
+    "w": "down",
+    "t": 83.2
+   }
+  ]
+ },
+ {
+  "id": 20,
+  "text": "I don't run when the world spins fast",
+  "kind": "rap",
+  "start": 83.6,
+  "end": 86.35,
+  "words": [
+   {
+    "w": "I",
+    "t": 83.6
+   },
+   {
+    "w": "don't",
+    "t": 83.76
+   },
+   {
+    "w": "run",
+    "t": 84.16
+   },
+   {
+    "w": "when",
+    "t": 84.44
+   },
+   {
+    "w": "the",
+    "t": 84.72
+   },
+   {
+    "w": "world",
+    "t": 84.88
+   },
+   {
+    "w": "spins",
+    "t": 85.36
+   },
+   {
+    "w": "fast",
+    "t": 85.92
+   }
+  ]
+ },
+ {
+  "id": 21,
+  "text": "I let every little moment last",
+  "kind": "rap",
+  "start": 86.4,
+  "end": 88.99,
+  "words": [
+   {
+    "w": "I",
+    "t": 86.4
+   },
+   {
+    "w": "let",
+    "t": 86.64
+   },
+   {
+    "w": "every",
+    "t": 86.8
+   },
+   {
+    "w": "little",
+    "t": 87.12
+   },
+   {
+    "w": "moment",
+    "t": 87.6
+   },
+   {
+    "w": "last",
+    "t": 88.4
+   }
+  ]
+ },
+ {
+  "id": 22,
+  "text": "One step left and a half step back",
+  "kind": "rap",
+  "start": 89.04,
+  "end": 91.63,
+  "words": [
+   {
+    "w": "One",
+    "t": 89.04
+   },
+   {
+    "w": "step",
+    "t": 89.28
+   },
+   {
+    "w": "left",
+    "t": 89.6
+   },
+   {
+    "w": "and",
+    "t": 89.92
+   },
+   {
+    "w": "a",
+    "t": 90.08
+   },
+   {
+    "w": "half",
+    "t": 90.24
+   },
+   {
+    "w": "step",
+    "t": 90.8
+   },
+   {
+    "w": "back",
+    "t": 91.12
+   }
+  ]
+ },
+ {
+  "id": 23,
+  "text": "Let the bassline bend till the vinyl cracks",
+  "kind": "rap",
+  "start": 91.68,
+  "end": 94.82,
+  "words": [
+   {
+    "w": "Let",
+    "t": 91.68
+   },
+   {
+    "w": "the",
+    "t": 91.84
+   },
+   {
+    "w": "bassline",
+    "t": 92.0
+   },
+   {
+    "w": "bend",
+    "t": 92.56
+   },
+   {
+    "w": "till",
+    "t": 93.04
+   },
+   {
+    "w": "the",
+    "t": 93.2
+   },
+   {
+    "w": "vinyl",
+    "t": 93.36
+   },
+   {
+    "w": "cracks",
+    "t": 93.92
+   }
+  ]
+ },
+ {
+  "id": 24,
+  "text": "Down, down, down in the pocket",
+  "kind": "rap",
+  "start": 95.36,
+  "end": 97.71,
+  "words": [
+   {
+    "w": "Down,",
+    "t": 95.36
+   },
+   {
+    "w": "down,",
+    "t": 95.92
+   },
+   {
+    "w": "down",
+    "t": 96.48
+   },
+   {
+    "w": "in",
+    "t": 96.88
+   },
+   {
+    "w": "the",
+    "t": 97.12
+   },
+   {
+    "w": "pocket",
+    "t": 97.28
+   }
+  ]
+ },
+ {
+  "id": 25,
+  "text": "So damn deep, can't nobody stop it",
+  "kind": "rap",
+  "start": 97.76,
+  "end": 100.41,
+  "words": [
+   {
+    "w": "So",
+    "t": 97.76
+   },
+   {
+    "w": "damn",
+    "t": 98.16
+   },
+   {
+    "w": "deep,",
+    "t": 98.56
+   },
+   {
+    "w": "can't",
+    "t": 98.96
+   },
+   {
+    "w": "nobody",
+    "t": 99.28
+   },
+   {
+    "w": "stop",
+    "t": 99.84
+   },
+   {
+    "w": "it",
+    "t": 100.16
+   }
+  ]
+ },
+ {
+  "id": 26,
+  "text": "Low, low, lower than the ground",
+  "kind": "rap",
+  "start": 100.4,
+  "end": 103.07,
+  "words": [
+   {
+    "w": "Low,",
+    "t": 100.4
+   },
+   {
+    "w": "low,",
+    "t": 100.88
+   },
+   {
+    "w": "lower",
+    "t": 101.2
+   },
+   {
+    "w": "than",
+    "t": 101.56
+   },
+   {
+    "w": "the",
+    "t": 102.48
+   },
+   {
+    "w": "ground",
+    "t": 102.64
+   }
+  ]
+ },
+ {
+  "id": 27,
+  "text": "Black hole groove gonna pull you down",
+  "kind": "rap",
+  "start": 103.12,
+  "end": 106.1,
+  "words": [
+   {
+    "w": "Black",
+    "t": 103.12
+   },
+   {
+    "w": "hole",
+    "t": 103.44
+   },
+   {
+    "w": "groove",
+    "t": 103.8
+   },
+   {
+    "w": "gonna",
+    "t": 104.24
+   },
+   {
+    "w": "pull",
+    "t": 104.56
+   },
+   {
+    "w": "you",
+    "t": 104.88
+   },
+   {
+    "w": "down",
+    "t": 105.2
+   }
+  ]
+ },
+ {
+  "id": 28,
+  "text": "Ooh, let it breathe",
+  "kind": "back",
+  "start": 107.1,
+  "end": 109.6,
+  "words": [
+   {
+    "w": "Ooh,",
+    "t": 107.1
+   },
+   {
+    "w": "let",
+    "t": 107.9
+   },
+   {
+    "w": "it",
+    "t": 108.2
+   },
+   {
+    "w": "breathe",
+    "t": 108.4
+   }
+  ]
+ },
+ {
+  "id": 29,
+  "text": "Ooh, underneath",
+  "kind": "back",
+  "start": 109.8,
+  "end": 113.6,
+  "words": [
+   {
+    "w": "Ooh,",
+    "t": 109.8
+   },
+   {
+    "w": "underneath",
+    "t": 110.9
+   }
+  ]
+ },
+ {
+  "id": 30,
+  "text": "Don't rush that beat!",
+  "kind": "shout",
+  "start": 114.16,
+  "end": 115.31,
+  "words": [
+   {
+    "w": "Don't",
+    "t": 114.16
+   },
+   {
+    "w": "rush",
+    "t": 114.4
+   },
+   {
+    "w": "that",
+    "t": 114.72
+   },
+   {
+    "w": "beat!",
+    "t": 114.96
+   }
+  ]
+ },
+ {
+  "id": 31,
+  "text": "Let it shuffle those feet!",
+  "kind": "shout",
+  "start": 115.36,
+  "end": 116.75,
+  "words": [
+   {
+    "w": "Let",
+    "t": 115.36
+   },
+   {
+    "w": "it",
+    "t": 115.52
+   },
+   {
+    "w": "shuffle",
+    "t": 115.68
+   },
+   {
+    "w": "those",
+    "t": 116.08
+   },
+   {
+    "w": "feet!",
+    "t": 116.3
+   }
+  ]
+ },
+ {
+  "id": 32,
+  "text": "BOOM—CHA!",
+  "kind": "shout",
+  "start": 116.8,
+  "end": 118.5,
+  "words": [
+   {
+    "w": "BOOM—CHA!",
+    "t": 116.8
+   }
+  ]
+ },
+ {
+  "id": 33,
+  "text": "BOOM-BOOM—CHA!",
+  "kind": "shout",
+  "start": 118.7,
+  "end": 120.1,
+  "words": [
+   {
+    "w": "BOOM-BOOM—CHA!",
+    "t": 118.7
+   }
+  ]
+ },
+ {
+  "id": 34,
+  "text": "BOOM—CHA!",
+  "kind": "shout",
+  "start": 120.2,
+  "end": 120.95,
+  "words": [
+   {
+    "w": "BOOM—CHA!",
+    "t": 120.2
+   }
+  ]
+ },
+ {
+  "id": 35,
+  "text": "BOOM-BOOM—CHA!",
+  "kind": "shout",
+  "start": 121.0,
+  "end": 122.9,
+  "words": [
+   {
+    "w": "BOOM-BOOM—CHA!",
+    "t": 121.0
+   }
+  ]
+ },
+ {
+  "id": 36,
+  "text": "BOOM—CHA!",
+  "kind": "shout",
+  "start": 123.0,
+  "end": 124.4,
+  "words": [
+   {
+    "w": "BOOM—CHA!",
+    "t": 123.0
+   }
+  ]
+ },
+ {
+  "id": 37,
+  "text": "Got a crooked little grin and a crooked little groove",
+  "kind": "rap",
+  "start": 146.84,
+  "end": 149.15,
+  "words": [
+   {
+    "w": "Got",
+    "t": 146.84
+   },
+   {
+    "w": "a",
+    "t": 147.16
+   },
+   {
+    "w": "crooked",
+    "t": 147.2
+   },
+   {
+    "w": "little",
+    "t": 147.56
+   },
+   {
+    "w": "grin",
+    "t": 147.72
+   },
+   {
+    "w": "and",
+    "t": 148.04
+   },
+   {
+    "w": "a",
+    "t": 148.2
+   },
+   {
+    "w": "crooked",
+    "t": 148.28
+   },
+   {
+    "w": "little",
+    "t": 148.64
+   },
+   {
+    "w": "groove",
+    "t": 148.8
+   }
+  ]
+ },
+ {
+  "id": 38,
+  "text": "Never met a mountain that I couldn't move",
+  "kind": "rap",
+  "start": 149.2,
+  "end": 150.89,
+  "words": [
+   {
+    "w": "Never",
+    "t": 149.2
+   },
+   {
+    "w": "met",
+    "t": 149.36
+   },
+   {
+    "w": "a",
+    "t": 149.52
+   },
+   {
+    "w": "mountain",
+    "t": 149.6
+   },
+   {
+    "w": "that",
+    "t": 150.0
+   },
+   {
+    "w": "I",
+    "t": 150.16
+   },
+   {
+    "w": "couldn't",
+    "t": 150.32
+   },
+   {
+    "w": "move",
+    "t": 150.64
+   }
+  ]
+ },
+ {
+  "id": 39,
+  "text": "Not with force, not with speed",
+  "kind": "rap",
+  "start": 150.88,
+  "end": 152.51,
+  "words": [
+   {
+    "w": "Not",
+    "t": 150.88
+   },
+   {
+    "w": "with",
+    "t": 151.28
+   },
+   {
+    "w": "force,",
+    "t": 151.44
+   },
+   {
+    "w": "not",
+    "t": 151.64
+   },
+   {
+    "w": "with",
+    "t": 151.84
+   },
+   {
+    "w": "speed",
+    "t": 152.16
+   }
+  ]
+ },
+ {
+  "id": 40,
+  "text": "Just a little bit of patience and a pocket full of dreams",
+  "kind": "rap",
+  "start": 152.56,
+  "end": 155.31,
+  "words": [
+   {
+    "w": "Just",
+    "t": 152.56
+   },
+   {
+    "w": "a",
+    "t": 152.8
+   },
+   {
+    "w": "little",
+    "t": 152.96
+   },
+   {
+    "w": "bit",
+    "t": 153.2
+   },
+   {
+    "w": "of",
+    "t": 153.36
+   },
+   {
+    "w": "patience",
+    "t": 153.52
+   },
+   {
+    "w": "and",
+    "t": 154.0
+   },
+   {
+    "w": "a",
+    "t": 154.16
+   },
+   {
+    "w": "pocket",
+    "t": 154.24
+   },
+   {
+    "w": "full",
+    "t": 154.64
+   },
+   {
+    "w": "of",
+    "t": 154.8
+   },
+   {
+    "w": "dreams",
+    "t": 154.96
+   }
+  ]
+ },
+ {
+  "id": 41,
+  "text": "Dust on the record, gold in the sound",
+  "kind": "rap",
+  "start": 155.36,
+  "end": 157.23,
+  "words": [
+   {
+    "w": "Dust",
+    "t": 155.36
+   },
+   {
+    "w": "on",
+    "t": 155.68
+   },
+   {
+    "w": "the",
+    "t": 155.84
+   },
+   {
+    "w": "record,",
+    "t": 155.92
+   },
+   {
+    "w": "gold",
+    "t": 156.32
+   },
+   {
+    "w": "in",
+    "t": 156.64
+   },
+   {
+    "w": "the",
+    "t": 156.8
+   },
+   {
+    "w": "sound",
+    "t": 156.88
+   }
+  ]
+ },
+ {
+  "id": 42,
+  "text": "Everybody floats when the bass comes around",
+  "kind": "rap",
+  "start": 157.28,
+  "end": 159.21,
+  "words": [
+   {
+    "w": "Everybody",
+    "t": 157.28
+   },
+   {
+    "w": "floats",
+    "t": 157.6
+   },
+   {
+    "w": "when",
+    "t": 157.88
+   },
+   {
+    "w": "the",
+    "t": 158.16
+   },
+   {
+    "w": "bass",
+    "t": 158.24
+   },
+   {
+    "w": "comes",
+    "t": 158.64
+   },
+   {
+    "w": "around",
+    "t": 158.88
+   }
+  ]
+ },
+ {
+  "id": 43,
+  "text": "I don't need a crown, I don't need a throne",
+  "kind": "rap",
+  "start": 159.26,
+  "end": 161.31,
+  "words": [
+   {
+    "w": "I",
+    "t": 159.26
+   },
+   {
+    "w": "don't",
+    "t": 159.64
+   },
+   {
+    "w": "need",
+    "t": 159.92
+   },
+   {
+    "w": "a",
+    "t": 160.12
+   },
+   {
+    "w": "crown,",
+    "t": 160.32
+   },
+   {
+    "w": "I",
+    "t": 160.44
+   },
+   {
+    "w": "don't",
+    "t": 160.56
+   },
+   {
+    "w": "need",
+    "t": 160.68
+   },
+   {
+    "w": "a",
+    "t": 160.8
+   },
+   {
+    "w": "throne",
+    "t": 160.96
+   }
+  ]
+ },
+ {
+  "id": 44,
+  "text": "Just a six-string rhythm and a road back home",
+  "kind": "rap",
+  "start": 161.36,
+  "end": 164.25,
+  "words": [
+   {
+    "w": "Just",
+    "t": 161.36
+   },
+   {
+    "w": "a",
+    "t": 161.52
+   },
+   {
+    "w": "six-string",
+    "t": 161.68
+   },
+   {
+    "w": "rhythm",
+    "t": 162.24
+   },
+   {
+    "w": "and",
+    "t": 162.48
+   },
+   {
+    "w": "a",
+    "t": 162.72
+   },
+   {
+    "w": "road",
+    "t": 162.96
+   },
+   {
+    "w": "back",
+    "t": 163.28
+   },
+   {
+    "w": "home",
+    "t": 163.64
+   }
+  ]
+ },
+ {
+  "id": 45,
+  "text": "Left, right, slide!",
+  "kind": "back",
+  "start": 164.3,
+  "end": 165.6,
+  "words": [
+   {
+    "w": "Left,",
+    "t": 164.3
+   },
+   {
+    "w": "right,",
+    "t": 164.7
+   },
+   {
+    "w": "slide!",
+    "t": 165.1
+   }
+  ]
+ },
+ {
+  "id": 46,
+  "text": "Let the rhythm ride!",
+  "kind": "back",
+  "start": 165.7,
+  "end": 166.9,
+  "words": [
+   {
+    "w": "Let",
+    "t": 165.7
+   },
+   {
+    "w": "the",
+    "t": 165.8
+   },
+   {
+    "w": "rhythm",
+    "t": 165.9
+   },
+   {
+    "w": "ride!",
+    "t": 166.4
+   }
+  ]
+ },
+ {
+  "id": 47,
+  "text": "Left, right, slide!",
+  "kind": "back",
+  "start": 167.0,
+  "end": 168.2,
+  "words": [
+   {
+    "w": "Left,",
+    "t": 167.0
+   },
+   {
+    "w": "right,",
+    "t": 167.4
+   },
+   {
+    "w": "slide!",
+    "t": 167.8
+   }
+  ]
+ },
+ {
+  "id": 48,
+  "text": "Keep it on the inside!",
+  "kind": "back",
+  "start": 168.3,
+  "end": 170.6,
+  "words": [
+   {
+    "w": "Keep",
+    "t": 168.3
+   },
+   {
+    "w": "it",
+    "t": 168.6
+   },
+   {
+    "w": "on",
+    "t": 168.75
+   },
+   {
+    "w": "the",
+    "t": 168.9
+   },
+   {
+    "w": "inside!",
+    "t": 169.1
+   }
+  ]
+ },
+ {
+  "id": 49,
+  "text": "Somewhere between the silence and the sound",
+  "kind": "whisper",
+  "start": 177.12,
+  "end": 180.18,
+  "words": [
+   {
+    "w": "Somewhere",
+    "t": 177.12
+   },
+   {
+    "w": "between",
+    "t": 177.84
+   },
+   {
+    "w": "the",
+    "t": 178.16
+   },
+   {
+    "w": "silence",
+    "t": 178.32
+   },
+   {
+    "w": "and",
+    "t": 178.96
+   },
+   {
+    "w": "the",
+    "t": 179.12
+   },
+   {
+    "w": "sound",
+    "t": 179.28
+   }
+  ]
+ },
+ {
+  "id": 50,
+  "text": "There's a little piece of heaven underground",
+  "kind": "whisper",
+  "start": 182.4,
+  "end": 185.06,
+  "words": [
+   {
+    "w": "There's",
+    "t": 182.4
+   },
+   {
+    "w": "a",
+    "t": 182.72
+   },
+   {
+    "w": "little",
+    "t": 182.88
+   },
+   {
+    "w": "piece",
+    "t": 183.04
+   },
+   {
+    "w": "of",
+    "t": 183.44
+   },
+   {
+    "w": "heaven",
+    "t": 183.6
+   },
+   {
+    "w": "underground",
+    "t": 184.16
+   }
+  ]
+ },
+ {
+  "id": 51,
+  "text": "You hear that?",
+  "kind": "whisper",
+  "start": 187.68,
+  "end": 188.81,
+  "words": [
+   {
+    "w": "You",
+    "t": 187.68
+   },
+   {
+    "w": "hear",
+    "t": 187.92
+   },
+   {
+    "w": "that?",
+    "t": 188.16
+   }
+  ]
+ },
+ {
+  "id": 52,
+  "text": "Dum... dum-dum...",
+  "kind": "scat",
+  "start": 188.86,
+  "end": 191.9,
+  "words": [
+   {
+    "w": "Dum...",
+    "t": 188.86
+   },
+   {
+    "w": "dum-dum...",
+    "t": 190.5
+   }
+  ]
+ },
+ {
+  "id": 53,
+  "text": "Dum... dum-dum...",
+  "kind": "scat",
+  "start": 192.12,
+  "end": 194.9,
+  "words": [
+   {
+    "w": "Dum...",
+    "t": 192.12
+   },
+   {
+    "w": "dum-dum...",
+    "t": 193.5
+   }
+  ]
+ },
+ {
+  "id": 54,
+  "text": "That's the space between the notes.",
+  "kind": "whisper",
+  "start": 195.28,
+  "end": 197.46,
+  "words": [
+   {
+    "w": "That's",
+    "t": 195.28
+   },
+   {
+    "w": "the",
+    "t": 195.6
+   },
+   {
+    "w": "space",
+    "t": 195.68
+   },
+   {
+    "w": "between",
+    "t": 196.08
+   },
+   {
+    "w": "the",
+    "t": 196.4
+   },
+   {
+    "w": "notes.",
+    "t": 196.56
+   }
+  ]
+ },
+ {
+  "id": 55,
+  "text": "HA!",
+  "kind": "shout",
+  "start": 202.0,
+  "end": 203.6,
+  "words": [
+   {
+    "w": "HA!",
+    "t": 202.0
+   }
+  ]
+ },
+ {
+  "id": 56,
+  "text": "Ba-doom, ba-da-bow",
+  "kind": "scat",
+  "start": 205.58,
+  "end": 206.72,
+  "words": [
+   {
+    "w": "Ba-doom,",
+    "t": 205.58
+   },
+   {
+    "w": "ba-da-bow",
+    "t": 205.82
+   }
+  ]
+ },
+ {
+  "id": 57,
+  "text": "Chicka-wah, chicka-now",
+  "kind": "scat",
+  "start": 206.84,
+  "end": 207.98,
+  "words": [
+   {
+    "w": "Chicka-wah,",
+    "t": 206.84
+   },
+   {
+    "w": "chicka-now",
+    "t": 207.08
+   }
+  ]
+ },
+ {
+  "id": 58,
+  "text": "Doo-ba-dum, ba-da-dee",
+  "kind": "scat",
+  "start": 208.06,
+  "end": 209.2,
+  "words": [
+   {
+    "w": "Doo-ba-dum,",
+    "t": 208.06
+   },
+   {
+    "w": "ba-da-dee",
+    "t": 208.3
+   }
+  ]
+ },
+ {
+  "id": 59,
+  "text": "Got that groove inside of me!",
+  "kind": "scat",
+  "start": 209.44,
+  "end": 210.97,
+  "words": [
+   {
+    "w": "Got",
+    "t": 209.44
+   },
+   {
+    "w": "that",
+    "t": 209.68
+   },
+   {
+    "w": "groove",
+    "t": 209.92
+   },
+   {
+    "w": "inside",
+    "t": 210.16
+   },
+   {
+    "w": "of",
+    "t": 210.4
+   },
+   {
+    "w": "me!",
+    "t": 210.64
+   }
+  ]
+ },
+ {
+  "id": 60,
+  "text": "Ba-doom, ba-da-bow",
+  "kind": "scat",
+  "start": 211.02,
+  "end": 211.66,
+  "words": [
+   {
+    "w": "Ba-doom,",
+    "t": 211.02
+   },
+   {
+    "w": "ba-da-bow",
+    "t": 211.27
+   }
+  ]
+ },
+ {
+  "id": 61,
+  "text": "Chicka-wah, chicka-now",
+  "kind": "scat",
+  "start": 211.68,
+  "end": 212.34,
+  "words": [
+   {
+    "w": "Chicka-wah,",
+    "t": 211.68
+   },
+   {
+    "w": "chicka-now",
+    "t": 211.93
+   }
+  ]
+ },
+ {
+  "id": 62,
+  "text": "Doo-ba-dum, ba-da-dee",
+  "kind": "scat",
+  "start": 212.36,
+  "end": 213.4,
+  "words": [
+   {
+    "w": "Doo-ba-dum,",
+    "t": 212.36
+   },
+   {
+    "w": "ba-da-dee",
+    "t": 212.61
+   }
+  ]
+ },
+ {
+  "id": 63,
+  "text": "Ba-doom, ba-da-bow",
+  "kind": "scat",
+  "start": 233.3,
+  "end": 234.35,
+  "words": [
+   {
+    "w": "Ba-doom,",
+    "t": 233.3
+   },
+   {
+    "w": "ba-da-bow",
+    "t": 233.6
+   }
+  ]
+ },
+ {
+  "id": 64,
+  "text": "Chicka-wah, chicka-now",
+  "kind": "scat",
+  "start": 234.4,
+  "end": 235.45,
+  "words": [
+   {
+    "w": "Chicka-wah,",
+    "t": 234.4
+   },
+   {
+    "w": "chicka-now",
+    "t": 234.7
+   }
+  ]
+ },
+ {
+  "id": 65,
+  "text": "Doo-ba-dum, ba-da-dee",
+  "kind": "scat",
+  "start": 235.5,
+  "end": 236.7,
+  "words": [
+   {
+    "w": "Doo-ba-dum,",
+    "t": 235.5
+   },
+   {
+    "w": "ba-da-dee",
+    "t": 235.8
+   }
+  ]
+ },
+ {
+  "id": 66,
+  "text": "Got that groove inside of me!",
+  "kind": "scat",
+  "start": 237.04,
+  "end": 238.85,
+  "words": [
+   {
+    "w": "Got",
+    "t": 237.04
+   },
+   {
+    "w": "that",
+    "t": 237.34
+   },
+   {
+    "w": "groove",
+    "t": 237.64
+   },
+   {
+    "w": "inside",
+    "t": 237.94
+   },
+   {
+    "w": "of",
+    "t": 238.24
+   },
+   {
+    "w": "me!",
+    "t": 238.54
+   }
+  ]
+ },
+ {
+  "id": 67,
+  "text": "Ba-doom, ba-da-bow",
+  "kind": "scat",
+  "start": 238.9,
+  "end": 239.95,
+  "words": [
+   {
+    "w": "Ba-doom,",
+    "t": 238.9
+   },
+   {
+    "w": "ba-da-bow",
+    "t": 239.2
+   }
+  ]
+ },
+ {
+  "id": 68,
+  "text": "Chicka-wah, chicka-now",
+  "kind": "scat",
+  "start": 240.0,
+  "end": 241.05,
+  "words": [
+   {
+    "w": "Chicka-wah,",
+    "t": 240.0
+   },
+   {
+    "w": "chicka-now",
+    "t": 240.3
+   }
+  ]
+ },
+ {
+  "id": 69,
+  "text": "Doo-ba-dum, ba-da-dee",
+  "kind": "scat",
+  "start": 241.1,
+  "end": 242.15,
+  "words": [
+   {
+    "w": "Doo-ba-dum,",
+    "t": 241.1
+   },
+   {
+    "w": "ba-da-dee",
+    "t": 241.4
+   }
+  ]
+ },
+ {
+  "id": 70,
+  "text": "Got that groove inside of me!",
+  "kind": "scat",
+  "start": 242.2,
+  "end": 244.4,
+  "words": [
+   {
+    "w": "Got",
+    "t": 242.2
+   },
+   {
+    "w": "that",
+    "t": 242.5
+   },
+   {
+    "w": "groove",
+    "t": 242.8
+   },
+   {
+    "w": "inside",
+    "t": 243.1
+   },
+   {
+    "w": "of",
+    "t": 243.4
+   },
+   {
+    "w": "me!",
+    "t": 243.7
+   }
+  ]
+ },
+ {
+  "id": 71,
+  "text": "Bmm-ts, bmm-bmm-ts!",
+  "kind": "shout",
+  "start": 256.42,
+  "end": 258.4,
+  "words": [
+   {
+    "w": "Bmm-ts,",
+    "t": 256.42
+   },
+   {
+    "w": "bmm-bmm-ts!",
+    "t": 257.46
+   }
+  ]
+ },
+ {
+  "id": 72,
+  "text": "Bada-bow, bada-bow!",
+  "kind": "shout",
+  "start": 259.22,
+  "end": 260.6,
+  "words": [
+   {
+    "w": "Bada-bow,",
+    "t": 259.22
+   },
+   {
+    "w": "bada-bow!",
+    "t": 259.7
+   }
+  ]
+ },
+ {
+  "id": 73,
+  "text": "Tka-tss, boom-tss, boom!",
+  "kind": "shout",
+  "start": 261.95,
+  "end": 264.2,
+  "words": [
+   {
+    "w": "Tka-tss,",
+    "t": 261.95
+   },
+   {
+    "w": "boom-tss,",
+    "t": 262.88
+   },
+   {
+    "w": "boom!",
+    "t": 263.3
+   }
+  ]
+ },
+ {
+  "id": 74,
+  "text": "Down, down, down in the pocket",
+  "kind": "rap",
+  "start": 278.32,
+  "end": 280.99,
+  "words": [
+   {
+    "w": "Down,",
+    "t": 278.32
+   },
+   {
+    "w": "down,",
+    "t": 279.04
+   },
+   {
+    "w": "down",
+    "t": 279.6
+   },
+   {
+    "w": "in",
+    "t": 280.0
+   },
+   {
+    "w": "the",
+    "t": 280.16
+   },
+   {
+    "w": "pocket",
+    "t": 280.32
+   }
+  ]
+ },
+ {
+  "id": 75,
+  "text": "So damn deep, can't nobody stop it",
+  "kind": "rap",
+  "start": 281.04,
+  "end": 284.03,
+  "words": [
+   {
+    "w": "So",
+    "t": 281.04
+   },
+   {
+    "w": "damn",
+    "t": 281.28
+   },
+   {
+    "w": "deep,",
+    "t": 281.68
+   },
+   {
+    "w": "can't",
+    "t": 282.16
+   },
+   {
+    "w": "nobody",
+    "t": 282.48
+   },
+   {
+    "w": "stop",
+    "t": 283.04
+   },
+   {
+    "w": "it",
+    "t": 283.28
+   }
+  ]
+ },
+ {
+  "id": 76,
+  "text": "Low, low, lower than the ground",
+  "kind": "rap",
+  "start": 284.08,
+  "end": 286.51,
+  "words": [
+   {
+    "w": "Low,",
+    "t": 284.08
+   },
+   {
+    "w": "low,",
+    "t": 284.48
+   },
+   {
+    "w": "lower",
+    "t": 285.12
+   },
+   {
+    "w": "than",
+    "t": 285.52
+   },
+   {
+    "w": "the",
+    "t": 285.6
+   },
+   {
+    "w": "ground",
+    "t": 285.92
+   }
+  ]
+ },
+ {
+  "id": 77,
+  "text": "Black hole groove gonna pull you down",
+  "kind": "rap",
+  "start": 286.56,
+  "end": 289.5,
+  "words": [
+   {
+    "w": "Black",
+    "t": 286.56
+   },
+   {
+    "w": "hole",
+    "t": 286.8
+   },
+   {
+    "w": "groove",
+    "t": 287.2
+   },
+   {
+    "w": "gonna",
+    "t": 287.64
+   },
+   {
+    "w": "pull",
+    "t": 287.96
+   },
+   {
+    "w": "you",
+    "t": 288.36
+   },
+   {
+    "w": "down",
+    "t": 288.6
+   }
+  ]
+ },
+ {
+  "id": 78,
+  "text": "Down, down, down",
+  "kind": "back",
+  "start": 290.0,
+  "end": 292.0,
+  "words": [
+   {
+    "w": "Down,",
+    "t": 290.0
+   },
+   {
+    "w": "down,",
+    "t": 290.5
+   },
+   {
+    "w": "down",
+    "t": 291.0
+   }
+  ]
+ },
+ {
+  "id": 79,
+  "text": "Feel that sound",
+  "kind": "back",
+  "start": 292.2,
+  "end": 294.4,
+  "words": [
+   {
+    "w": "Feel",
+    "t": 292.2
+   },
+   {
+    "w": "that",
+    "t": 292.9
+   },
+   {
+    "w": "sound",
+    "t": 293.4
+   }
+  ]
+ },
+ {
+  "id": 80,
+  "text": "Down, down, down",
+  "kind": "back",
+  "start": 294.7,
+  "end": 296.9,
+  "words": [
+   {
+    "w": "Down,",
+    "t": 294.7
+   },
+   {
+    "w": "down,",
+    "t": 295.4
+   },
+   {
+    "w": "down",
+    "t": 296.0
+   }
+  ]
+ },
+ {
+  "id": 81,
+  "text": "Underground",
+  "kind": "back",
+  "start": 297.0,
+  "end": 298.8,
+  "words": [
+   {
+    "w": "Underground",
+    "t": 297.0
+   }
+  ]
+ },
+ {
+  "id": 82,
+  "text": "A little less hurry.",
+  "kind": "spoken",
+  "start": 299.36,
+  "end": 300.9,
+  "words": [
+   {
+    "w": "A",
+    "t": 299.36
+   },
+   {
+    "w": "little",
+    "t": 299.52
+   },
+   {
+    "w": "less",
+    "t": 299.68
+   },
+   {
+    "w": "hurry.",
+    "t": 300.0
+   }
+  ]
+ },
+ {
+  "id": 83,
+  "text": "A little more soul.",
+  "kind": "spoken",
+  "start": 302.44,
+  "end": 304.14,
+  "words": [
+   {
+    "w": "A",
+    "t": 302.44
+   },
+   {
+    "w": "little",
+    "t": 302.6
+   },
+   {
+    "w": "more",
+    "t": 302.84
+   },
+   {
+    "w": "soul.",
+    "t": 303.24
+   }
+  ]
+ },
+ {
+  "id": 84,
+  "text": "A little more silence.",
+  "kind": "spoken",
+  "start": 305.92,
+  "end": 307.62,
+  "words": [
+   {
+    "w": "A",
+    "t": 305.92
+   },
+   {
+    "w": "little",
+    "t": 306.08
+   },
+   {
+    "w": "more",
+    "t": 306.48
+   },
+   {
+    "w": "silence.",
+    "t": 306.72
+   }
+  ]
+ },
+ {
+  "id": 85,
+  "text": "Now let that bass roll.",
+  "kind": "spoken",
+  "start": 308.88,
+  "end": 311.54,
+  "words": [
+   {
+    "w": "Now",
+    "t": 308.88
+   },
+   {
+    "w": "let",
+    "t": 309.28
+   },
+   {
+    "w": "that",
+    "t": 309.6
+   },
+   {
+    "w": "bass",
+    "t": 309.92
+   },
+   {
+    "w": "roll.",
+    "t": 310.64
+   }
+  ]
+ },
+ {
+  "id": 86,
+  "text": "Dum... ba-dum...",
+  "kind": "scat",
+  "start": 312.34,
+  "end": 315.0,
+  "words": [
+   {
+    "w": "Dum...",
+    "t": 312.34
+   },
+   {
+    "w": "ba-dum...",
+    "t": 313.72
+   }
+  ]
+ },
+ {
+  "id": 87,
+  "text": "Dum-dum... bow...",
+  "kind": "scat",
+  "start": 315.1,
+  "end": 317.9,
+  "words": [
+   {
+    "w": "Dum-dum...",
+    "t": 315.1
+   },
+   {
+    "w": "bow...",
+    "t": 316.64
+   }
+  ]
+ },
+ {
+  "id": 88,
+  "text": "The secret ain't playing fast.",
+  "kind": "spoken",
+  "start": 318.4,
+  "end": 320.74,
+  "words": [
+   {
+    "w": "The",
+    "t": 318.4
+   },
+   {
+    "w": "secret",
+    "t": 318.56
+   },
+   {
+    "w": "ain't",
+    "t": 318.92
+   },
+   {
+    "w": "playing",
+    "t": 319.28
+   },
+   {
+    "w": "fast.",
+    "t": 319.84
+   }
+  ]
+ },
+ {
+  "id": 89,
+  "text": "It's knowing when not to play.",
+  "kind": "spoken",
+  "start": 321.2,
+  "end": 323.3,
+  "words": [
+   {
+    "w": "It's",
+    "t": 321.2
+   },
+   {
+    "w": "knowing",
+    "t": 321.52
+   },
+   {
+    "w": "when",
+    "t": 321.84
+   },
+   {
+    "w": "not",
+    "t": 322.0
+   },
+   {
+    "w": "to",
+    "t": 322.16
+   },
+   {
+    "w": "play.",
+    "t": 322.4
+   }
+  ]
+ },
+ {
+  "id": 90,
+  "text": "BWOOW...",
+  "kind": "shout",
+  "start": 346.9,
+  "end": 350.6,
+  "words": [
+   {
+    "w": "BWOOW...",
+    "t": 346.9
+   }
+  ]
+ }
+]

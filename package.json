@@ -1,0 +1,32 @@
+{
+  "name": "jazz-samurai-mv",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jazz Samurai — vertical lyric music video (TikTok / IG Reels) built with Remotion",
+  "scripts": {
+    "audio": "node -e \"require('fs').copyFileSync('Jazz Samurai.mp3','public/jazz-samurai.mp3')\"",
+    "predev": "npm run audio",
+    "dev": "remotion studio",
+    "prerender": "npm run audio",
+    "render": "remotion render JazzSamuraiMV out/master-full.mp4 --crf=17",
+    "prerender:reel": "npm run audio",
+    "render:reel": "remotion render JazzSamuraiReel out/master-reel.mp4 --crf=17",
+    "encode": "bash tools/encode.sh",
+    "still": "remotion still JazzSamuraiMV out/cover.png --frame=1720",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.534",
+    "@remotion/fonts": "4.0.534",
+    "@remotion/noise": "4.0.534",
+    "@remotion/paths": "4.0.534",
+    "@remotion/shapes": "4.0.534",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.534"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}
