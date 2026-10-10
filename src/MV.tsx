@@ -9,6 +9,7 @@ import { TransitionView } from "./Transitions";
 import { LyricsLayer } from "./Lyrics";
 import { Finish } from "./Finish";
 import { RenderAt } from "./ctx";
+import { FlashLayer, impactFilter, aberration } from "./Flash";
 
 loadAllFonts();
 
@@ -57,6 +58,7 @@ export const MV: React.FC<MVProps> = ({ from, to, fadeOut }) => {
   const sx = (hash(fr) - 0.5) * 36 * shake, sy = (hash(fr + 7) - 0.5) * 36 * shake;
   const zoom = 1 + bassHit(T, 0.14) * 0.014 + beatPulse(T, 0.1) * 0.006 + shake * 0.03;
   const flash = Math.min(0.32, IMPACTS.reduce((a, h) => a + decay(T, h, 0.07), 0) * 0.32);
+  const ab = aberration(T, IMPACTS);
   const end = fadeOut > 0 ? clamp((frame - (durationInFrames - fadeOut * FPS)) / (fadeOut * FPS)) : 0;
   return (
     <AbsoluteFill style={{ background: C.ink }}>
@@ -66,10 +68,21 @@ export const MV: React.FC<MVProps> = ({ from, to, fadeOut }) => {
         volume={(f) => (fadeOut > 0 ? interpolate(f, [durationInFrames - fadeOut * FPS, durationInFrames], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1)}
       />
       <RenderAt.Provider value={renderAt}>
-        <AbsoluteFill style={{ transform: `translate(${sx}px,${sy}px) scale(${zoom})` }}>
+        <AbsoluteFill style={{ transform: `translate(${sx}px,${sy}px) scale(${zoom})`, filter: impactFilter(T) }}>
           <SceneStack T={T} />
         </AbsoluteFill>
       </RenderAt.Provider>
+      <FlashLayer T={T} impacts={IMPACTS} />
+      {ab > 0.05 && (
+        <>
+          <AbsoluteFill style={{ transform: `translate(${-14 * ab}px,${4 * ab}px)`, filter: "brightness(0) invert(1) sepia(1) saturate(60) hue-rotate(-45deg)", mixBlendMode: "screen", opacity: 0.85 * ab }}>
+            <LyricsLayer T={T} styles={LYRIC_STYLES} fallback={fallbackStyle} />
+          </AbsoluteFill>
+          <AbsoluteFill style={{ transform: `translate(${14 * ab}px,${-4 * ab}px)`, filter: "brightness(0) invert(1) sepia(1) saturate(60) hue-rotate(150deg)", mixBlendMode: "screen", opacity: 0.85 * ab }}>
+            <LyricsLayer T={T} styles={LYRIC_STYLES} fallback={fallbackStyle} />
+          </AbsoluteFill>
+        </>
+      )}
       <AbsoluteFill style={{ transform: `translate(${sx * 0.4}px,${sy * 0.4}px)` }}>
         <LyricsLayer T={T} styles={LYRIC_STYLES} fallback={fallbackStyle} />
       </AbsoluteFill>

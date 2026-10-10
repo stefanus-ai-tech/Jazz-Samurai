@@ -7,7 +7,7 @@ export const Finish: React.FC<{ T: number; grain?: number }> = ({ T, grain = 0.2
   // grain/dust tick at 15 fps: more filmic, and far kinder to the encoder
   const fr = Math.floor(T * 15);
   const gx = Math.floor(hash(fr) * 512), gy = Math.floor(hash(fr + 0.5) * 512);
-  const specks = Array.from({ length: 7 }).map((_, i) => ({
+  const specks = Array.from({ length: 4 }).map((_, i) => ({
     x: rr(fr, i, 0, 1080), y: rr(fr, i + 20, 0, 1920), r: rr(fr, i + 40, 1, 4.5), on: hash(fr * 3 + i) > 0.55,
   }));
   const scratch = hash(fr * 0.37) > 0.92 ? rr(fr, 99, 80, 1000) : null;

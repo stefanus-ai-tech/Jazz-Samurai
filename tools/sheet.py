@@ -1,8 +1,8 @@
-"""Contact sheet of out/preview stills: python3 tools/sheet.py out.png [cols] [glob-filter]"""
-import sys, glob, pathlib
+"""Contact sheet of preview stills: python3 tools/sheet.py out.png [cols] [lo-hi seconds]  (env PREVIEW_DIR, default out/preview)"""
+import sys, glob, pathlib, os
 from PIL import Image, ImageDraw
 out = sys.argv[1]; cols = int(sys.argv[2]) if len(sys.argv) > 2 else 6
-files = sorted(glob.glob("out/preview/f*.jpeg"))
+files = sorted(glob.glob(os.path.join(os.environ.get("PREVIEW_DIR", "out/preview"), "f*.jpeg")))
 if len(sys.argv) > 3:
     lo, hi = map(float, sys.argv[3].split("-")); files = [f for f in files if lo * 30 <= int(pathlib.Path(f).stem[1:]) <= hi * 30]
 ims = [Image.open(f) for f in files]

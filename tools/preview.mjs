@@ -1,5 +1,6 @@
 // Render stills at given song times (seconds) into out/preview/, reusing one bundle.
 // usage: node tools/preview.mjs 12.9 15.5 60 ...   (or a range "a:b:step")
+// env: PREVIEW_DIR (default out/preview), PREVIEW_SCALE (default 0.4)
 import { bundle } from "@remotion/bundler";
 import { renderStill, selectComposition, openBrowser } from "@remotion/renderer";
 import path from "node:path";
@@ -13,7 +14,7 @@ for (const a of args) {
     for (let t = s; t <= e + 1e-6; t += st) times.push(+t.toFixed(3));
   } else times.push(Number(a));
 }
-const outDir = path.resolve("out/preview");
+const outDir = path.resolve(process.env.PREVIEW_DIR ?? "out/preview");
 fs.mkdirSync(outDir, { recursive: true });
 const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), onProgress: () => {} });
 const browserExecutable = process.env.REMOTION_BROWSER ?? null;
@@ -26,7 +27,7 @@ async function worker() {
   while (idx < times.length) {
     const t = times[idx++];
     const frame = Math.min(composition.durationInFrames - 1, Math.round(t * 30));
-    await renderStill({ serveUrl, composition, frame, output: path.join(outDir, `f${String(frame).padStart(5, "0")}.jpeg`), imageFormat: "jpeg", jpegQuality: 80, scale: 0.4, puppeteerInstance: browser, browserExecutable });
+    await renderStill({ serveUrl, composition, frame, output: path.join(outDir, `f${String(frame).padStart(5, "0")}.jpeg`), imageFormat: "jpeg", jpegQuality: 80, scale: Number(process.env.PREVIEW_SCALE ?? 0.4), puppeteerInstance: browser, browserExecutable });
   }
 }
 await Promise.all(Array.from({ length: conc }, worker));

@@ -16,6 +16,42 @@ export type LStyle = {
   align?: "center" | "left" | "right"; hl?: number[]; bg?: "none" | "box" | "band"; bgColor?: string;
   lead?: number; exit?: "fade" | "cut" | "up" | "down" | "zoom" | "slash"; spacing?: number; lh?: number; seed?: number;
   shadow?: string; tail?: number;
+  /** hero word index (bigger, accent, glow, spark burst). Default: auto (longest word). false = none */
+  hero?: number | false;
+  /** soft dark shade behind the text block for legibility (default "shade" for flowing text) */
+  plate?: "shade" | "none";
+};
+
+const NO_HERO: StyleName[] = ["spiral", "ticker", "tunnel", "scatter", "neon", "chant", "stamp", "whisper", "bubble", "comic", "vertical"];
+const NO_PLATE: StyleName[] = ["bubble", "chant", "stamp", "ticker", "tunnel", "spiral", "scatter", "comic"];
+
+const autoHero = (ws: { w: string }[]) => {
+  let best = -1, bl = 2;
+  ws.forEach((wd, i) => {
+    const L = wd.w.replace(/[^A-Za-z]/g, "").length;
+    if (L >= bl) { best = i; bl = L; }
+  });
+  return best;
+};
+
+/** spark burst for a hero word landing (0..0.45s) */
+const Sparks: React.FC<{ wt: number; fs: number; c1: string; c2: string }> = ({ wt, fs, c1, c2 }) => {
+  if (wt < 0 || wt > 0.45) return null;
+  const p = wt / 0.45;
+  const r = easeOut(p) * fs * 1.15;
+  return (
+    <>
+      {Array.from({ length: 8 }).map((_, k) => {
+        const a = (k / 8) * Math.PI * 2 + 0.3;
+        const sz = fs * 0.16 * (1 - p);
+        return (
+          <svg key={k} width={sz * 2} height={sz * 2} viewBox="-1 -1 2 2" style={{ position: "absolute", left: "50%", top: "50%", transform: `translate(${Math.cos(a) * r * 1.4 - sz}px, ${Math.sin(a) * r * 0.8 - sz}px)`, overflow: "visible" }}>
+            <path d="M0,-1 L0.22,-0.22 L1,0 L0.22,0.22 L0,1 L-0.22,0.22 L-1,0 L-0.22,-0.22 Z" fill={k % 2 ? c1 : c2} />
+          </svg>
+        );
+      })}
+    </>
+  );
 };
 
 const outlineShadow = (col: string, px: number, drop?: string) => {
@@ -49,7 +85,7 @@ function renderWord(c: Ctx): { style: React.CSSProperties; inner: React.ReactNod
   switch (st.s) {
     case "pop": {
       const s = easeOutBack(k(0.22), 2.2);
-      return { style: { ...base, transform: `translateY(${(1 - s) * 30}px) scale(${Math.max(0, s)}) rotate(${(rnd(seed, 1) - 0.5) * 8}deg)` }, inner: text };
+      return { style: { ...base, filter: wt < 0.12 ? `blur(${(1 - k(0.12)) * 6}px)` : undefined, transform: `translateY(${(1 - s) * 30}px) scale(${Math.max(0, s)})` }, inner: text };
     }
     case "slam": {
       const q = k(0.13);
@@ -91,7 +127,7 @@ function renderWord(c: Ctx): { style: React.CSSProperties; inner: React.ReactNod
       const on = vis && (wt > 0.3 || hash(Math.floor(wt * 30) + i * 3) > 0.45) && !(hat(T) > 0.85 && hash(Math.floor(T * 30) + i) > 0.7);
       const glow = st.accent;
       return {
-        style: { ...base, color: on ? "#fff" : "rgba(255,255,255,0.12)", textShadow: on ? `0 0 ${fs * 0.06}px ${glow}, 0 0 ${fs * 0.16}px ${glow}, 0 0 ${fs * 0.35}px ${glow}` : "none" },
+        style: { ...base, WebkitTextStroke: "0px transparent", color: on ? "#fff" : "rgba(255,255,255,0.12)", textShadow: on ? `0 0 ${fs * 0.06}px ${glow}, 0 0 ${fs * 0.16}px ${glow}, 0 0 ${fs * 0.35}px ${glow}` : "none" },
         inner: text,
       };
     }
@@ -99,7 +135,7 @@ function renderWord(c: Ctx): { style: React.CSSProperties; inner: React.ReactNod
       const q = k(0.4);
       return {
         style: { ...base, opacity: vis ? q : 0, filter: `blur(${(1 - q) * 6}px)` },
-        inner: letters(text, (_, j) => ({ transform: `translateY(${Math.sin(T * 4.5 + j * 0.7 + i) * fs * 0.09}px) rotate(${Math.sin(T * 3 + j) * 6}deg)` })),
+        inner: letters(text, (_, j) => ({ transform: `translateY(${Math.sin(T * 4 + j * 0.6 + i) * fs * 0.045}px)` })),
       };
     }
     case "stretch": {
@@ -133,11 +169,11 @@ function renderWord(c: Ctx): { style: React.CSSProperties; inner: React.ReactNod
     }
     case "crooked": {
       const s = easeOutBack(k(0.2), 2.5);
-      return { style: { ...base, fontSize: fs * rr(seed, 4, 0.8, 1.3), transform: `translateY(${rr(seed, 5, -24, 24)}px) rotate(${rr(seed, 6, -15, 15)}deg) scale(${Math.max(0, s)})` }, inner: text };
+      return { style: { ...base, transform: `translateY(${rr(seed, 5, -10, 10)}px) rotate(${rr(seed, 6, -5, 5)}deg) scale(${Math.max(0, s)})` }, inner: text };
     }
     case "split": {
-      const q = easeOut(k(0.3));
-      const off = (1 - q) * 260;
+      const q = easeOut(k(0.18));
+      const off = (1 - q) * 180;
       return {
         style: { ...base, position: "relative" },
         inner: (
@@ -165,7 +201,7 @@ function renderWord(c: Ctx): { style: React.CSSProperties; inner: React.ReactNod
     }
     case "glitch": {
       const fr = Math.floor(T * 30);
-      const g = (wt < 0.3 || hash(fr + i) > 0.86) && vis;
+      const g = wt < 0.16 && vis;
       const dx = g ? (hash(fr * 3 + i) - 0.5) * fs * 0.25 : 0;
       return {
         style: { ...base, position: "relative" },
@@ -197,7 +233,7 @@ function renderWord(c: Ctx): { style: React.CSSProperties; inner: React.ReactNod
       return {
         style: { ...base, opacity: vis ? q : 0 },
         inner: letters(text, (_, j) => {
-          const m = Math.max(0, wt - 0.25 - rnd(seed, j) * 0.4);
+          const m = Math.max(0, wt - 0.6 - rnd(seed, j) * 0.3) * 0.6;
           return { transformOrigin: "top", transform: `scaleY(${1 + m * (0.3 + rnd(seed, j + 9) * 0.7)}) translateY(${m * 8}px)` };
         }),
       };
@@ -260,7 +296,8 @@ const LyricLine: React.FC<{ line: Line; st: LStyle; T: number }> = ({ line, st: 
     fs = Math.min(w / (longest * FONTS[font][2] * 1.12), h / (words.length * lh), 300);
   }
   const outline = st.outline === undefined ? C.ink : st.outline;
-  const textShadow = st.shadow ?? (outline ? outlineShadow(outline, Math.max(3, fs * 0.035), `0 ${fs * 0.07}px 0 ${outline}`) : undefined);
+  const textShadow = st.shadow ?? (outline ? `0 ${(fs * 0.06).toFixed(1)}px 0 ${outline}` : undefined);
+  const stroke: React.CSSProperties = outline ? { WebkitTextStroke: `${Math.max(5, fs * 0.1).toFixed(1)}px ${outline}`, paintOrder: "stroke fill" } : {};
 
   let exitT = "";
   let exitO = 1;
@@ -275,7 +312,7 @@ const LyricLine: React.FC<{ line: Line; st: LStyle; T: number }> = ({ line, st: 
   }
 
   const common: React.CSSProperties = {
-    fontFamily: ff(font), fontSize: fs, lineHeight: lh, color: st.color, textShadow, letterSpacing: st.spacing,
+    fontFamily: ff(font), fontSize: fs, lineHeight: lh, color: st.color, textShadow, letterSpacing: st.spacing, ...stroke,
   };
 
   // ---- special layouts ----
@@ -357,22 +394,41 @@ const LyricLine: React.FC<{ line: Line; st: LStyle; T: number }> = ({ line, st: 
   };
   if (isVert) container.height = h;
 
+  const hero = st.hero === false || NO_HERO.includes(st.s) ? -1 : st.hero ?? autoHero(words);
   const body = words.map((wd, i) => {
-    const r = renderWord({ wt: T - wd.t, wdur: (words[i + 1]?.t ?? line.end) - wd.t, i, n: words.length, lt, ex, T, fs, st, hl: !!st.hl?.includes(i), text: wd.w, lineDur });
-    const col = st.hl?.includes(i) ? st.accent : undefined;
+    const isHero = i === hero;
+    const r = renderWord({ wt: T - wd.t, wdur: (words[i + 1]?.t ?? line.end) - wd.t, i, n: words.length, lt, ex, T, fs, st, hl: !!st.hl?.includes(i) || isHero, text: wd.w, lineDur });
+    const col = st.hl?.includes(i) || isHero ? st.accent : undefined;
+    const heroFx: React.CSSProperties = isHero && st.s !== "karaoke" && st.s !== "outline"
+      ? { fontSize: (r.style.fontSize as number) ?? fs * 1.16, textShadow: `${textShadow ? textShadow + ", " : ""}0 0 ${(fs * 0.28).toFixed(0)}px ${st.accent}` }
+      : {};
     const el = (
-      <span style={{ ...r.style, color: r.style.color ?? col, writingMode: isVert ? "vertical-rl" : undefined, textOrientation: isVert ? "upright" : undefined, fontSize: (r.style.fontSize as number) ?? (isVert ? fs * 0.8 : undefined), alignSelf: isStack ? (st.align ? undefined : i % 2 ? "flex-end" : "flex-start") : undefined }}>
+      <span style={{ ...r.style, ...heroFx, color: r.style.color ?? col, writingMode: isVert ? "vertical-rl" : undefined, textOrientation: isVert ? "upright" : undefined, fontSize: heroFx.fontSize ?? (r.style.fontSize as number) ?? (isVert ? fs * 0.8 : undefined), alignSelf: isStack ? (st.align ? undefined : i % 2 ? "flex-end" : "flex-start") : undefined }}>
         {r.inner}
       </span>
     );
-    return r.wrap ? <span key={i} style={{ display: "inline-block", ...r.wrap }}>{el}</span> : <React.Fragment key={i}>{el}</React.Fragment>;
+    const wt = T - wd.t;
+    const punch = isHero && wt >= 0 ? 1 + 0.22 * Math.exp(-wt / 0.09) : 1;
+    const wrapped = isHero ? (
+      <span style={{ display: "inline-block", position: "relative", transform: `scale(${punch.toFixed(3)})` }}>
+        {el}
+        <Sparks wt={wt} fs={fs} c1={st.accent} c2={C.paper} />
+      </span>
+    ) : el;
+    return r.wrap ? <span key={i} style={{ display: "inline-block", ...r.wrap }}>{wrapped}</span> : <React.Fragment key={i}>{wrapped}</React.Fragment>;
   });
+  const plateOn = (st.plate ?? (NO_PLATE.includes(st.s) || st.bg ? "none" : "shade")) === "shade";
+  const estLines = isStack ? words.length : Math.max(1, Math.ceil((text.length * fs * FONTS[font][2] * (upper ? 1.08 : 1)) / w));
+  const plateH = estLines * fs * lh + fs * 1.3;
+  const plate = plateOn ? (
+    <div style={{ position: "absolute", left: x - w * 0.7, width: w * 1.4, top: y - plateH / 2, height: plateH, opacity: clamp(lt / 0.2) * exitO, background: "radial-gradient(ellipse closest-side, rgba(6,4,5,0.66) 0%, rgba(6,4,5,0.42) 55%, rgba(6,4,5,0) 100%)", pointerEvents: "none" }} />
+  ) : null;
 
   if (st.s === "bubble") {
     const s = easeOutBack(clamp(lt / 0.25), 2);
     return (
       <div style={{ position: "absolute", left: x - w / 2, width: w, top: y, transform: `translateY(-50%) scale(${Math.max(0, s)}) rotate(${st.rot ?? -3}deg) ${exitT}`, opacity: exitO }}>
-        <div style={{ background: st.bgColor ?? C.paper, border: `8px solid ${C.ink}`, borderRadius: 60, padding: "36px 40px", display: "flex", flexWrap: "wrap", justifyContent: "center", columnGap: fs * 0.25, ...common, textShadow: "none" }}>{body}</div>
+        <div style={{ background: st.bgColor ?? C.paper, border: `8px solid ${C.ink}`, borderRadius: 60, padding: "36px 40px", display: "flex", flexWrap: "wrap", justifyContent: "center", columnGap: fs * 0.25, ...common, textShadow: "none", WebkitTextStroke: "0px transparent" }}>{body}</div>
         <div style={{ position: "absolute", left: w * 0.25, bottom: -64, width: 0, height: 0, borderLeft: "30px solid transparent", borderRight: "50px solid transparent", borderTop: `72px solid ${C.ink}` }} />
       </div>
     );
@@ -384,7 +440,12 @@ const LyricLine: React.FC<{ line: Line; st: LStyle; T: number }> = ({ line, st: 
       </div>
     );
   }
-  return <div style={container}>{body}</div>;
+  return (
+    <>
+      {plate}
+      <div style={container}>{body}</div>
+    </>
+  );
 };
 
 export const LyricsLayer: React.FC<{ T: number; styles: Record<number, LStyle>; fallback: (l: Line) => LStyle }> = ({ T, styles, fallback }) => {
