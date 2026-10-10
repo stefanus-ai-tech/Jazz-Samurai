@@ -1,7 +1,7 @@
 import React from "react";
 import { C } from "../lib/constants";
-import { clamp, decay, easeIn, easeInOut, prog } from "../lib/math";
-import { AUDIO, barCount, barPulse, bassHit, hitPulse, lastIdx } from "../lib/audio";
+import { clamp, easeIn, prog } from "../lib/math";
+import { AUDIO, barCount, barPulse, hitPulse } from "../lib/audio";
 import { Fill, Svg, Cam, Glow, SceneFC } from "./kit";
 import { Rays, SpeedLines, Halftone, Stars, Shock } from "../assets/Fx";
 import { Sp, SpRain, SpDrift, Glint, pop, stamp, sway } from "../sprite/Sp";

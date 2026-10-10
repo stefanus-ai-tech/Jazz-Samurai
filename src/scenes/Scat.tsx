@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { C } from "../lib/constants";
 import { ff } from "../lib/fonts";
-import { clamp, decay, easeOutBack, hash, prog, rr } from "../lib/math";
-import { AUDIO, bass, bassHit, beatCount, beatPulse, hat, hitPulse, lastIdx } from "../lib/audio";
+import { clamp, easeOutBack, hash, rr } from "../lib/math";
+import { AUDIO, bass, bassHit, hat, hitPulse, lastIdx } from "../lib/audio";
 import { LINES, wt } from "../lib/lyrics";
 import { Fill, Svg, Glow, SceneFC } from "./kit";
 import { Kanji, Halftone, Rays, Rain, Stars, Shock, Seigaiha } from "../assets/Fx";

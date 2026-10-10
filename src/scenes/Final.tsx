@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { C } from "../lib/constants";
 import { clamp, decay, easeIn, easeInOut, easeOut, prog, rr } from "../lib/math";
-import { AUDIO, bass, bassHit, beatPulse, lastIdx } from "../lib/audio";
+import { AUDIO, bassHit, beatPulse, lastIdx } from "../lib/audio";
 import { wt } from "../lib/lyrics";
 import { Fill, Svg, Cam, Glow, SceneFC } from "./kit";
 import { Stars, Halftone, Paper } from "../assets/Fx";
 import { RenderAt } from "../ctx";
-import { Sp, SpDrift, Glint, SpriteName, pop, stamp, sway } from "../sprite/Sp";
+import { Sp, SpDrift, SpriteName, pop, stamp } from "../sprite/Sp";
 import { wrap } from "./Intro";
 
 /** 264.3 → 271.6  rooftops at night, comets overhead */
@@ -52,7 +52,7 @@ export const MoonLeap: SceneFC = ({ t, T }) => {
 export const HypnoChorus: SceneFC = ({ T }) => (
   <Fill bg={C.ink}>
     <Sp n="spiral3" x={540} y={960} w={2300} r={T * 50} s={1 + beatPulse(T) * 0.03} />
-    <Sp n="spiral_bw" x={540} y={960} w={900} r={-T * 90} o={0.92} />
+    <Sp n="spiral_bw" x={540} y={960} w={900} r={-T * 90} o={0.85} filter="brightness(0.5)" />
     <Sp n="tomoe" x={540} y={960} w={300} r={T * 150} s={1 + bassHit(T, 0.2) * 0.12} />
   </Fill>
 );

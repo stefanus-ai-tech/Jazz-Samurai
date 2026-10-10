@@ -1,10 +1,9 @@
-import React from "react";
 import { C } from "../lib/constants";
 import { clamp, decay, easeIn, easeInOut, easeOut, easeOutBack, prog, rr } from "../lib/math";
-import { AUDIO, bass, bassHit, beatCount, beatPulse, lastIdx, since } from "../lib/audio";
+import { AUDIO, bass, beatCount, beatPulse, lastIdx } from "../lib/audio";
 import { wt } from "../lib/lyrics";
-import { Fill, Svg, Cam, Glow, SceneFC } from "./kit";
-import { Rays, Halftone, Paper, Stars, Shock, SpeedLines } from "../assets/Fx";
+import { Fill, Svg, Glow, SceneFC } from "./kit";
+import { Rays, Halftone, Paper, Stars, Shock } from "../assets/Fx";
 import { Sp, SpOrbit, SpTwinkle, SpriteName, pop, stamp, sway } from "../sprite/Sp";
 
 /** 83.55 → 86.35  "I don't run when the world spins fast" */

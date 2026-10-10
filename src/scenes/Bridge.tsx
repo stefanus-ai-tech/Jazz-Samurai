@@ -1,6 +1,6 @@
 import React from "react";
 import { C } from "../lib/constants";
-import { clamp, decay, prog } from "../lib/math";
+import { clamp, decay } from "../lib/math";
 import { AUDIO, bass, bassHit, lastIdx } from "../lib/audio";
 import { Fill, Svg, Glow, SceneFC } from "./kit";
 import { Rays, Paper, Stars, Shock, Enso, Seigaiha } from "../assets/Fx";

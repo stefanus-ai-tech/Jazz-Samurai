@@ -1,9 +1,9 @@
 import React from "react";
 import { C } from "../lib/constants";
-import { clamp, decay, easeIn, easeInOut, easeOut, easeOutBack, prog, rr } from "../lib/math";
-import { AUDIO, bass, beatCount, beatPhase, beatPulse, lastIdx, since } from "../lib/audio";
+import { clamp, decay, easeOut, easeOutBack, prog } from "../lib/math";
+import { AUDIO, beatCount, beatPhase, beatPulse, lastIdx } from "../lib/audio";
 import { wt } from "../lib/lyrics";
-import { Fill, Svg, Cam, Glow, SceneFC } from "./kit";
+import { Fill, Svg, Glow, SceneFC } from "./kit";
 import { Rays, Smoke, Stars, Halftone } from "../assets/Fx";
 import { Sp, SpRain, SpDrift, Glint, SpriteName, pop, stamp, sway } from "../sprite/Sp";
 import { wrap } from "./Intro";
@@ -168,7 +168,7 @@ export const GetDown: SceneFC = ({ T }) => {
       <Svg>
         <Rays rot={T * (pose ? -14 : 14)} n={22} c1={pose ? C.navy : C.red2} c2={pose ? C.blue2 : C.red} />
       </Svg>
-      <Sp n={pose ? "ronin_blue_crouch" : "ronin_red_attack"} x={540} y={1700} w={1080} ay={1} s={Math.min(k, 1.25)} glow={C.ink} glowR={16} />
+      <Sp n={pose ? "ronin_blue_crouch" : "ronin_red_attack"} x={540} y={1700} w={1080} ay={1} s={Math.min(k, 1.25)} glow={C.paper} glowR={10} />
       {[160, 920].map((x, j) => (
         <Sp key={j} n="arrow_red" x={x} y={1080 + dk * 90} w={260} r={90} o={0.4 + 0.6 * dk} />
       ))}

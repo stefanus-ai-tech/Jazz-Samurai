@@ -1,12 +1,10 @@
-import React from "react";
 import { C } from "../lib/constants";
-import { clamp, decay, easeInOut, easeOutBack, prog } from "../lib/math";
+import { clamp, easeInOut, easeOutBack, prog } from "../lib/math";
 import { bass, bassHit, beatPulse, hitPulse } from "../lib/audio";
 import { wt } from "../lib/lyrics";
 import { Fill, Svg, Glow, SceneFC } from "./kit";
 import { Rays, Halftone, Paper, Stars, Embers } from "../assets/Fx";
-import { Sp, SpDrift, Glint, SpriteName, pop, stamp, sway } from "../sprite/Sp";
-import { wrap } from "./Intro";
+import { Sp, SpDrift, SpriteName, pop, stamp, sway } from "../sprite/Sp";
 
 /** 146.8 → 149.15  "Got a crooked little grin and a crooked little groove" */
 export const Crooked: SceneFC = ({ T }) => (
